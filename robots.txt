@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://kampgold.kjrventures.com/sitemap.xml
+Sitemap: https://kampgold.com/sitemap.xml
