@@ -21,22 +21,30 @@
   --serif:'Fraunces', serif;
   --sans:'Inter', sans-serif;
   --mono:'Space Mono', monospace;
+  /* Motion tokens — strong custom curves (built-in ease-out is too weak) */
+  --ease-out:cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-drawer:cubic-bezier(0.32, 0.72, 0, 1);
 }
 *{box-sizing:border-box; margin:0; padding:0;}
-html{scroll-behavior:smooth;}
+html{scroll-behavior:smooth; scroll-padding-top:80px; -webkit-tap-highlight-color:transparent;}
 body{background:var(--ink); color:var(--ivory); font-family:var(--sans); line-height:1.6; overflow-x:hidden;}
 a{color:inherit; text-decoration:none;}
+a, button{touch-action:manipulation;}
 img,svg{display:block; max-width:100%;}
 .wrap{max-width:1200px; margin:0 auto; padding:0 32px;}
-@media (prefers-reduced-motion: reduce){*{animation:none !important; transition:none !important;}}
 
-.reveal{opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease;}
-.reveal.in{opacity:1; transform:translateY(0);}
-/* No-JS / crawler fallback: never rely on JS to reveal actual content.
-   If JS hasn't run yet (or doesn't run at all), text is still present
-   in the DOM — this class only affects opacity/transform, so search
-   engines index the underlying text regardless of animation state. */
-noscript .reveal{opacity:1 !important; transform:none !important;}
+/* Reduced motion: no movement anywhere; content shows immediately */
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{animation:none !important; transition:none !important;}
+  html{scroll-behavior:auto;}
+}
+
+/* Scroll reveal.
+   Content is only hidden when JS is confirmed running (the inline
+   snippet in <head> adds .js to <html>). If JS fails or is blocked,
+   everything stays visible. */
+.js .reveal{opacity:0; transform:translateY(16px); transition:opacity .5s var(--ease-out), transform .5s var(--ease-out);}
+.js .reveal.in{opacity:1; transform:translateY(0);}
 
 .ember-field{position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden;}
 .ember-dot{
@@ -57,37 +65,49 @@ main, header, footer, .topbar{position:relative; z-index:1;}
 .topbar{background:#050604; color:var(--ivory-dim); font-size:12.5px; border-bottom:1px solid var(--line);}
 .topbar .wrap{display:flex; justify-content:space-between; align-items:center; padding:9px 32px; flex-wrap:wrap; gap:8px;}
 .topbar-left, .topbar-right{display:flex; gap:22px; align-items:center; flex-wrap:wrap;}
-.topbar a{display:flex; align-items:center; gap:7px; transition:color .2s;}
-.topbar a:hover{color:var(--acc-1);}
+.topbar a{display:flex; align-items:center; gap:7px; transition:color .2s var(--ease-out);}
+.topbar-hours{display:flex; align-items:center; gap:7px;}
 .topbar svg{width:13px; height:13px; fill:var(--acc-2);}
 
-header{position:sticky; top:0; z-index:100; background:rgba(14,15,13,0.92); backdrop-filter:blur(10px); border-bottom:1px solid var(--line);}
+/* Header.
+   The blurred background lives on a pseudo-element, NOT on <header>:
+   backdrop-filter on an element makes it the containing block for
+   position:fixed children, which would shrink the mobile drawer to
+   the height of the header bar. */
+header{position:sticky; top:0; z-index:100; border-bottom:1px solid var(--line);}
+header::before{content:''; position:absolute; inset:0; z-index:-1; background:rgba(14,15,13,0.92); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);}
+/* Dim overlay behind the open mobile drawer */
+header::after{content:''; position:fixed; inset:0; z-index:40; background:rgba(0,0,0,0.5); opacity:0; pointer-events:none; transition:opacity .25s var(--ease-out);}
+header.nav-open::after{opacity:1; pointer-events:auto;}
 .nav{display:flex; align-items:center; justify-content:space-between; padding:16px 32px; max-width:1200px; margin:0 auto;}
 .logo{display:flex; align-items:center; gap:13px;}
 .logo-text{font-family:var(--serif); font-weight:700; font-size:21px; letter-spacing:.2px; color:var(--ivory); line-height:1.1;}
 .logo-text b{color:var(--acc-1);}
 .logo-sub{font-family:var(--mono); font-size:9.5px; letter-spacing:2.5px; color:var(--ivory-dim); display:block; margin-top:3px;}
 nav.links{display:flex; gap:32px; align-items:center;}
-nav.links a{font-size:13.5px; color:var(--ivory-dim); font-weight:500; transition:color .2s;}
-nav.links a:hover, nav.links a.active{color:var(--acc-1);}
+nav.links a{font-size:13.5px; color:var(--ivory-dim); font-weight:500; transition:color .2s var(--ease-out);}
+nav.links a.active{color:var(--acc-1);}
+
 .btn-gold{
   background:linear-gradient(135deg, var(--acc-1), var(--acc-2));
-  background-size:200% 200%;
   color:#08120D !important; font-weight:700; padding:12px 26px; border-radius:999px;
   font-size:13.5px; letter-spacing:.2px; box-shadow:0 8px 24px -8px rgba(79,163,130,0.45);
-  transition:transform .2s, box-shadow .2s; animation:shimmerbtn 4s ease infinite;
+  transition:transform .16s var(--ease-out), box-shadow .2s var(--ease-out);
 }
-@keyframes shimmerbtn{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
-.btn-gold:hover{transform:translateY(-2px); box-shadow:0 12px 28px -8px rgba(79,163,130,0.6);}
-.btn-outline{border:1.5px solid var(--line); color:var(--ivory) !important; padding:11px 24px; border-radius:999px; font-size:13.5px; font-weight:600; transition:all .2s;}
-.btn-outline:hover{border-color:var(--acc-1); color:var(--acc-1) !important;}
-.btn-whatsapp{display:inline-flex; align-items:center; gap:9px; background:#1A1D1A; border:1.5px solid var(--line); color:var(--ivory) !important; padding:11px 22px 11px 16px; border-radius:999px; font-size:13.5px; font-weight:600; transition:all .2s;}
+.btn-outline{border:1.5px solid var(--line); color:var(--ivory) !important; padding:11px 24px; border-radius:999px; font-size:13.5px; font-weight:600; transition:transform .16s var(--ease-out), border-color .2s var(--ease-out), color .2s var(--ease-out);}
+.btn-whatsapp{display:inline-flex; align-items:center; gap:9px; background:#1A1D1A; border:1.5px solid var(--line); color:var(--ivory) !important; padding:11px 22px 11px 16px; border-radius:999px; font-size:13.5px; font-weight:600; transition:transform .16s var(--ease-out), border-color .2s var(--ease-out);}
 .btn-whatsapp svg{width:18px; height:18px; fill:#3FBF60;}
-.btn-whatsapp:hover{border-color:#3FBF60;}
-.menu-btn{display:none; background:none; border:none; color:var(--ivory); font-size:22px; cursor:pointer;}
+.btn-gold, .btn-outline, .btn-whatsapp, .menu-btn, .float-wa{user-select:none; -webkit-user-select:none; -webkit-touch-callout:none;}
+.menu-btn{display:none; background:none; border:none; color:var(--ivory); font-size:22px; cursor:pointer; min-width:44px; min-height:44px; position:relative; z-index:60;}
 @media (max-width:980px){
-  nav.links{position:fixed; top:0; right:0; bottom:0; width:78%; max-width:320px; background:var(--ink-2); flex-direction:column; align-items:flex-start; padding:100px 30px 30px; gap:24px; transform:translateX(100%); transition:transform .3s ease; border-left:1px solid var(--line); z-index:50;}
-  nav.links.open{transform:translateX(0);}
+  nav.links{
+    position:fixed; top:0; right:0; bottom:0; width:78%; max-width:320px; background:var(--ink-2);
+    flex-direction:column; align-items:flex-start; padding:100px 30px 30px; gap:24px;
+    transform:translateX(100%); visibility:hidden; /* hidden links stay out of the tab order */
+    transition:transform .3s var(--ease-drawer), visibility 0s linear .3s;
+    border-left:1px solid var(--line); z-index:50;
+  }
+  nav.links.open{transform:translateX(0); visibility:visible; transition-delay:0s;}
   .menu-btn{display:block;}
 }
 .logo-mark{width:42px; height:42px;}
@@ -110,18 +130,16 @@ h1.hero-title em{font-style:italic; font-weight:600; background:linear-gradient(
 .hv-bg{position:absolute; inset:0;}
 .hv-bg img{width:100%; height:100%; object-fit:cover; filter:saturate(1.05) contrast(1.05);}
 .hv-photo-overlay{position:absolute; inset:0; background:linear-gradient(180deg, rgba(14,15,13,0.25) 0%, rgba(14,15,13,0.55) 55%, rgba(14,15,13,0.85) 100%);}
-.hv-glow-1{position:absolute; width:480px; height:480px; border-radius:50%; background:radial-gradient(circle, rgba(79,163,130,0.32), transparent 65%); top:-140px; right:-140px; filter:blur(10px); animation:glowpulse 5s ease-in-out infinite;}
-.hv-glow-2{position:absolute; width:360px; height:360px; border-radius:50%; background:radial-gradient(circle, rgba(122,42,30,0.35), transparent 65%); bottom:-100px; left:-100px; filter:blur(10px); animation:glowpulse 6s ease-in-out infinite 1s;}
-@keyframes glowpulse{0%,100%{opacity:.7; transform:scale(1);}50%{opacity:1; transform:scale(1.08);}}
+/* Glows are now static — the shimmer below is the hero's one looping effect */
+.hv-glow-1{position:absolute; width:480px; height:480px; border-radius:50%; background:radial-gradient(circle, rgba(79,163,130,0.32), transparent 65%); top:-140px; right:-140px; filter:blur(10px); opacity:.85;}
+.hv-glow-2{position:absolute; width:360px; height:360px; border-radius:50%; background:radial-gradient(circle, rgba(122,42,30,0.35), transparent 65%); bottom:-100px; left:-100px; filter:blur(10px); opacity:.85;}
 .hv-shimmer{position:absolute; inset:0; z-index:2; pointer-events:none; background:linear-gradient(100deg, transparent 30%, rgba(200,240,220,0.14) 45%, rgba(200,240,220,0.24) 50%, rgba(200,240,220,0.14) 55%, transparent 70%); background-size:250% 250%; animation:sweep 5.5s ease-in-out infinite;}
 @keyframes sweep{0%{background-position:200% 200%;} 100%{background-position:-50% -50%;}}
-.hv-embers{position:absolute; inset:0; z-index:2; pointer-events:none; overflow:hidden;}
 .hv-cards{position:absolute; inset:0; display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:16px; padding:26px; z-index:3;}
-.hv-card{background:rgba(14,15,13,0.55); backdrop-filter:blur(6px); border:1px solid rgba(79,163,130,0.22); border-radius:12px; padding:20px 18px; display:flex; flex-direction:column; justify-content:flex-end; transition:transform .25s, border-color .25s;}
-.hv-card:hover{transform:translateY(-4px); border-color:var(--acc-1);}
+.hv-card{background:rgba(14,15,13,0.55); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); border:1px solid rgba(79,163,130,0.22); border-radius:12px; padding:20px 18px; display:flex; flex-direction:column; justify-content:flex-end; transition:transform .2s var(--ease-out), border-color .2s var(--ease-out);}
 .hv-card .ic{width:34px; height:34px; margin-bottom:14px; background:linear-gradient(135deg,var(--acc-1),var(--acc-2)); border-radius:9px; display:flex; align-items:center; justify-content:center;}
 .hv-card .ic svg{width:19px; height:19px; stroke:#08120D;}
-.hv-card h4{font-family:var(--serif); font-size:16.5px; font-weight:700; color:var(--ivory); margin-bottom:4px;}
+.hv-card h3, .hv-card h4{font-family:var(--serif); font-size:16.5px; font-weight:700; color:var(--ivory); margin-bottom:4px;}
 .hv-card p{font-size:12.5px; color:var(--ivory-dim);}
 @media (max-width:980px){.hero-grid{grid-template-columns:1fr;} .hero-visual{aspect-ratio:1/0.9;}}
 @media (max-width:560px){.hv-cards{grid-template-columns:1fr; grid-template-rows:repeat(4,auto); overflow-y:auto;}}
@@ -140,13 +158,16 @@ h1.hero-title em{font-style:italic; font-weight:600; background:linear-gradient(
 @media (max-width:860px){.impact-grid{grid-template-columns:1fr 1fr; row-gap:34px;} .impact-item{border-right:none; border-bottom:1px solid var(--line); padding-bottom:24px;} .impact-item:nth-child(odd){border-right:1px solid var(--line);}}
 
 section{padding:100px 0; position:relative;}
+.section-band{background:var(--ink-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
 .section-head{max-width:680px; margin-bottom:56px;}
 .section-tag{font-family:var(--mono); font-size:11px; letter-spacing:3px; color:var(--acc-1); text-transform:uppercase; display:flex; align-items:center; gap:10px; margin-bottom:16px;}
 .section-tag::before{content:''; width:28px; height:2px; background:var(--acc-2); border-radius:2px;}
+.section-tag.center{justify-content:center;}
 h1,h2,h3{font-family:var(--serif); color:var(--ivory);}
 h2{font-weight:800; font-size:clamp(28px,3.4vw,40px); line-height:1.15;}
 h2 em, h1 em{font-style:italic; font-weight:600; background:linear-gradient(135deg,var(--acc-1),var(--acc-2)); -webkit-background-clip:text; background-clip:text; color:transparent;}
 .section-desc{color:var(--ivory-dim); font-size:15.5px; margin-top:16px; max-width:560px;}
+.section-desc.center{margin-left:auto; margin-right:auto; text-align:center;}
 .page-body p{color:var(--ivory-dim); font-size:15.5px; margin-bottom:18px; max-width:720px;}
 .page-body h3{font-size:20px; margin:36px 0 12px; font-weight:700;}
 
@@ -155,40 +176,40 @@ h2 em, h1 em{font-style:italic; font-weight:600; background:linear-gradient(135d
 .about-visual{aspect-ratio:1/1; border-radius:16px; border:1px solid var(--line); position:relative; overflow:hidden;}
 .about-visual img{width:100%; height:100%; object-fit:cover; filter:saturate(1.1) contrast(1.05);}
 .about-visual .av-shade{position:absolute; inset:0; background:linear-gradient(200deg, rgba(14,15,13,0.05) 30%, rgba(14,15,13,0.75) 100%);}
-.about-visual .av-glow{position:absolute; inset:0; background:radial-gradient(circle at 60% 20%, rgba(79,163,130,0.26), transparent 55%); animation:glowpulse 6s ease-in-out infinite; mix-blend-mode:screen;}
+.about-visual .av-glow{position:absolute; inset:0; background:radial-gradient(circle at 60% 20%, rgba(79,163,130,0.26), transparent 55%); mix-blend-mode:screen;}
 .about-visual .av-badge{position:absolute; left:20px; bottom:20px; z-index:3; font-family:var(--mono); font-size:11px; letter-spacing:1.5px; color:var(--acc-1); background:rgba(14,15,13,0.6); padding:8px 14px; border:1px solid var(--line); border-radius:999px;}
+h2 + .about-body{margin-top:20px;}
 .about-body p{color:var(--ivory-dim); margin-bottom:16px; font-size:15.5px;}
 .about-marks{display:flex; gap:0; margin-top:30px; border-top:1px solid var(--line);}
 .mark-item{flex:1; padding:20px 18px 0 0; border-right:1px solid var(--line);}
 .mark-item:last-child{border-right:none;}
-.mark-item h4{font-family:var(--serif); font-size:16px; color:var(--acc-1); margin-bottom:6px; font-weight:700;}
+.mark-item h3, .mark-item h4{font-family:var(--serif); font-size:16px; color:var(--acc-1); margin-bottom:6px; font-weight:700;}
 .mark-item p{font-size:13px; color:var(--ivory-dim);}
+.about-actions{margin-top:28px; display:flex; gap:14px; flex-wrap:wrap;}
 @media (max-width:900px){.about-grid{grid-template-columns:1fr;}}
 
 .trade-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:14px; overflow:hidden;}
 .trade-card{background:var(--ink); padding:0; position:relative; overflow:hidden;}
 .trade-visual{aspect-ratio:1/0.9; position:relative; overflow:hidden;}
-.trade-visual img{width:100%; height:100%; object-fit:cover; filter:saturate(1.1) contrast(1.05); transition:transform .5s ease;}
-.trade-card:hover .trade-visual img{transform:scale(1.06);}
+.trade-visual img{width:100%; height:100%; object-fit:cover; filter:saturate(1.1) contrast(1.05); transition:transform .5s var(--ease-out);}
 .trade-visual .tv-shade{position:absolute; inset:0; background:linear-gradient(180deg, rgba(14,15,13,0) 55%, rgba(14,15,13,0.65) 100%);}
-.trade-visual .tv-shimmer{position:absolute; inset:0; background:linear-gradient(110deg, transparent 35%, rgba(210,240,225,0.12) 50%, transparent 65%); background-size:220% 220%; animation:sweep 6s ease-in-out infinite; mix-blend-mode:overlay;}
+/* Card shimmer is hover-only (see hover block) — no idle looping on four cards */
+.trade-visual .tv-shimmer{position:absolute; inset:0; opacity:0; background:linear-gradient(110deg, transparent 35%, rgba(210,240,225,0.12) 50%, transparent 65%); background-size:220% 220%; mix-blend-mode:overlay; pointer-events:none;}
 .trade-body{padding:20px 20px 26px;}
-.trade-body h4{font-family:var(--serif); font-size:16.5px; color:var(--ivory); margin-bottom:6px; font-weight:700;}
+.trade-body h3, .trade-body h4{font-family:var(--serif); font-size:16.5px; color:var(--ivory); margin-bottom:6px; font-weight:700;}
 .trade-body p{font-size:13px; color:var(--ivory-dim);}
 @media (max-width:900px){.trade-grid{grid-template-columns:1fr 1fr;}}
 
 .story-grid{display:grid; grid-template-columns:1.1fr 1fr; grid-template-rows:1fr 1fr; gap:16px;}
 .story-photo{position:relative; border-radius:14px; overflow:hidden; border:1px solid var(--line); aspect-ratio:4/3;}
 .story-photo.tall{grid-row:1 / 3; aspect-ratio:auto;}
-.story-photo img{width:100%; height:100%; object-fit:cover; transition:transform .6s ease;}
-.story-photo:hover img{transform:scale(1.05);}
+.story-photo img{width:100%; height:100%; object-fit:cover; transition:transform .6s var(--ease-out);}
 .story-shade{position:absolute; inset:0; background:linear-gradient(180deg, rgba(14,15,13,0) 50%, rgba(14,15,13,0.85) 100%);}
 .story-cap{position:absolute; left:16px; bottom:14px; z-index:2; font-family:var(--mono); font-size:11.5px; letter-spacing:0.5px; color:var(--ivory);}
 @media (max-width:860px){.story-grid{grid-template-columns:1fr; grid-template-rows:none;} .story-photo.tall{grid-row:auto; aspect-ratio:4/3;}}
 
 .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:14px; overflow:hidden;}
-.service-card{background:var(--ink); padding:36px 30px; position:relative; transition:background .25s;}
-.service-card:hover{background:var(--ink-2);}
+.service-card{background:var(--ink); padding:36px 30px; position:relative; transition:background .25s var(--ease-out);}
 .service-icon{width:44px; height:44px; border-radius:11px; background:linear-gradient(135deg, rgba(79,163,130,0.18), rgba(79,163,130,0.05)); display:flex; align-items:center; justify-content:center; margin-bottom:22px;}
 .service-icon svg{width:22px; height:22px; stroke:var(--acc-1);}
 .service-card h3{font-family:var(--serif); font-size:18.5px; color:var(--ivory); margin-bottom:10px; font-weight:700;}
@@ -239,7 +260,7 @@ details.faq-item summary{
   font-family:var(--serif); font-size:17px; font-weight:700; color:var(--ivory);
 }
 details.faq-item summary::-webkit-details-marker{display:none;}
-details.faq-item summary::after{content:'+'; color:var(--acc-1); font-size:22px; font-family:var(--sans); transition:transform .25s;}
+details.faq-item summary::after{content:'+'; color:var(--acc-1); font-size:22px; font-family:var(--sans); transition:transform .2s var(--ease-out);}
 details.faq-item[open] summary::after{transform:rotate(45deg);}
 details.faq-item p{color:var(--ivory-dim); font-size:14.5px; margin-top:14px; max-width:640px;}
 
@@ -267,14 +288,13 @@ footer{background:var(--ink-2); border-top:1px solid var(--line); padding:60px 0
 .footer-brand{display:flex; align-items:center; gap:12px; margin-bottom:16px;}
 .footer-brand span{font-family:var(--serif); font-weight:700; font-size:18px;}
 .footer-desc{color:var(--ivory-dim); font-size:14px; max-width:320px;}
-.footer-col h5{font-family:var(--mono); font-size:11px; letter-spacing:2px; color:var(--acc-1); text-transform:uppercase; margin-bottom:18px;}
-.footer-col a{display:block; font-size:13.5px; color:var(--ivory-dim); margin-bottom:11px; transition:color .2s;}
-.footer-col a:hover{color:var(--acc-1);}
+.footer-col h5, .footer-col .footer-title{font-family:var(--mono); font-size:11px; letter-spacing:2px; color:var(--acc-1); text-transform:uppercase; margin-bottom:18px; font-weight:400;}
+.footer-col a{display:block; font-size:13.5px; color:var(--ivory-dim); margin-bottom:11px; transition:color .2s var(--ease-out);}
 .footer-bottom{display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--line); padding-top:24px; flex-wrap:wrap; gap:14px; font-size:12.5px; color:var(--ivory-dim);}
 
-.float-wa{position:fixed; bottom:26px; right:26px; z-index:200; width:58px; height:58px; border-radius:50%; background:#25D366; display:flex; align-items:center; justify-content:center; box-shadow:0 10px 30px -6px rgba(0,0,0,0.5); transition:transform .2s; animation:wapulse 2.4s ease-in-out infinite;}
+/* Floating WhatsApp: pulses 3 times to be noticed, then rests */
+.float-wa{position:fixed; bottom:26px; right:26px; z-index:200; width:58px; height:58px; border-radius:50%; background:#25D366; display:flex; align-items:center; justify-content:center; box-shadow:0 10px 30px -6px rgba(0,0,0,0.5); transition:transform .16s var(--ease-out); animation:wapulse 2.4s ease-in-out 3;}
 @keyframes wapulse{0%,100%{box-shadow:0 10px 30px -6px rgba(0,0,0,0.5), 0 0 0 0 rgba(37,211,102,0.5);} 50%{box-shadow:0 10px 30px -6px rgba(0,0,0,0.5), 0 0 0 10px rgba(37,211,102,0);}}
-.float-wa:hover{transform:scale(1.08);}
 .float-wa svg{width:28px; height:28px; fill:#fff;}
 
 .page-hero{padding:56px 0 70px; border-bottom:1px solid var(--line);}
@@ -284,3 +304,25 @@ footer{background:var(--ink-2); border-top:1px solid var(--line); padding:60px 0
 @media (max-width:860px){.footer-grid{grid-template-columns:1fr 1fr; row-gap:36px;} section{padding:70px 0;}}
 ::selection{background:var(--acc-1); color:#08120D;}
 :focus-visible{outline:2px solid var(--acc-1); outline-offset:2px;}
+
+/* ------------------------------------------------------------
+   Hover styles — only for devices that can really hover.
+   On touch screens a tap would otherwise leave :hover stuck on.
+   ------------------------------------------------------------ */
+@media (hover:hover) and (pointer:fine){
+  .topbar a:hover, nav.links a:hover, .footer-col a:hover{color:var(--acc-1);}
+  .btn-gold:hover{transform:translateY(-2px); box-shadow:0 12px 28px -8px rgba(79,163,130,0.6);}
+  .btn-outline:hover{border-color:var(--acc-1); color:var(--acc-1) !important;}
+  .btn-whatsapp:hover{border-color:#3FBF60;}
+  .hv-card:hover{transform:translateY(-4px); border-color:var(--acc-1);}
+  .trade-card:hover .trade-visual img{transform:scale(1.06);}
+  .trade-card:hover .tv-shimmer{opacity:1; animation:sweep 1.4s ease-out 1;}
+  .story-photo:hover img{transform:scale(1.05);}
+  .service-card:hover{background:var(--ink-2);}
+  .float-wa:hover{transform:scale(1.08);}
+  .ticker-band:hover .ticker-track{animation-play-state:paused;}
+}
+
+/* Press feedback — works on touch and mouse. Placed after hover so it wins. */
+.btn-gold:active, .btn-outline:active, .btn-whatsapp:active{transform:scale(0.97);}
+.float-wa:active{transform:scale(0.94);}
