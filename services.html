@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#09130F">
 <meta name="color-scheme" content="dark">
-<title>Gold Buying, Assaying, Storage & Export Services — KampGold UG Ltd, Kampala</title>
-<meta name="description" content="KampGold UG Ltd offers gold buying, fire assay and XRF purity testing, secure storage, broker and mining partnerships, export documentation support, and market advisory in Kampala, Uganda.">
-<meta property="og:title" content="Gold Buying, Assaying, Storage & Export Services — KampGold UG Ltd, Kampala">
-<meta property="og:description" content="KampGold UG Ltd offers gold buying, fire assay and XRF purity testing, secure storage, broker and mining partnerships, export documentation support, and market advisory in Kampala, Uganda.">
+<title>Buy and Sell Gold, Assaying, Storage & Export Support — KampGold UG Ltd, Kampala</title>
+<meta name="description" content="KampGold UG Ltd buys raw gold and jewellery and sells tested gold bars, nuggets and gold dust in Kampala, Uganda. Fire assay and XRF testing, secure storage, broker and mining partnerships, export documentation support and market advisory.">
+<meta property="og:title" content="Buy and Sell Gold, Assaying, Storage & Export Support — KampGold UG Ltd, Kampala">
+<meta property="og:description" content="We buy raw gold and jewellery and sell tested gold bars, nuggets and gold dust. Every transaction is weighed and tested in front of you.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://kampgold.com/services.html">
 <meta property="og:image" content="https://kampgold.com/assets/gold-bars-scale.jpg">
@@ -18,8 +18,261 @@
 <link rel="preload" href="assets/fonts/bodoni-moda-latin-standard-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/instrument-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <script>document.documentElement.classList.add('js')</script>
-<link rel="stylesheet" href="assets/style.css">
 
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Do I need an appointment to sell gold to KampGold?","acceptedAnswer":{"@type":"Answer","text":"Individual sellers can walk in to our Kampala office without an appointment. Miners and brokers with regular volume can arrange scheduled collection."}},
+{"@type":"Question","name":"How is the price of gold decided?","acceptedAnswer":{"@type":"Answer","text":"Prices are based on the tested purity, the weight and the day's market rate. We weigh and test in front of you before any price is named."}},
+{"@type":"Question","name":"How and when do I get paid when I sell gold?","acceptedAnswer":{"@type":"Answer","text":"Payment is by cash or bank transfer, typically settled the same day terms are agreed."}},
+{"@type":"Question","name":"What gold does KampGold sell?","acceptedAnswer":{"@type":"Answer","text":"We sell tested gold bars, nuggets and gold dust to buyers, jewellers and investors. Contact us for current availability and a quote."}},
+{"@type":"Question","name":"Can KampGold store gold for me?","acceptedAnswer":{"@type":"Answer","text":"Yes. We offer short-term monitored storage for clients awaiting a sale, export clearance or collection. It is arranged case by case."}},
+{"@type":"Question","name":"Does KampGold handle gold exports?","acceptedAnswer":{"@type":"Answer","text":"We give guidance and paperwork support, but export itself goes through Uganda's licensed export channels."}}
+]}
+</script>
+
+<style>
+@font-face{font-family:"Bodoni Moda";src:url(assets/fonts/bodoni-moda-latin-standard-normal.woff2) format("woff2"),local("Bodoni Moda");font-weight:400 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Instrument Sans";src:url(assets/fonts/instrument-sans-latin-wght-normal.woff2) format("woff2"),local("Instrument Sans");font-weight:400 700;font-style:normal;font-display:swap}
+
+:root{
+  --ink:#09130F; --ink-2:#0D1B15; --panel:#112219; --panel-2:#16301F;
+  --forest:#1D4B39; --jade-3:#2E7A5C; --jade-2:#4FA382; --jade:#6CBE9A;
+  --text:#E8F1EB; --muted:#9BB3A6;
+  --line:rgba(108,190,154,.16); --line-strong:rgba(108,190,154,.34);
+  --mist:#E3ECE6; --mist-ink:#0E1F17; --mist-muted:#475F53;
+  --display:"Bodoni Moda","Bodoni 72",Didot,Georgia,serif;
+  --sans:"Instrument Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --wrap:1240px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:6.5rem;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ink);color:var(--text);font-family:var(--sans);font-size:1.0625rem;line-height:1.65;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);font-weight:500;letter-spacing:-.018em;line-height:1.08;margin:0}
+p{margin:0}
+:focus-visible{outline:2px solid var(--jade);outline-offset:3px;border-radius:6px}
+.skip{position:absolute;left:1rem;top:-4rem;background:var(--jade);color:var(--ink);padding:.6rem 1rem;border-radius:10px;z-index:100;font-weight:600;text-decoration:none}
+.skip:focus{top:1rem}
+.wrap{width:100%;max-width:var(--wrap);margin-inline:auto;padding-inline:clamp(1.25rem,4vw,2.5rem)}
+.ic{width:1.15em;height:1.15em;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.ic--fill{fill:currentColor;stroke:none}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;gap:.9rem;padding:.4rem .4rem .4rem 1.4rem;border-radius:999px;font-weight:600;font-size:.98rem;text-decoration:none;border:1px solid transparent;transition:transform .25s cubic-bezier(.2,.8,.2,1),background .25s,border-color .25s;cursor:pointer;line-height:1.2}
+.btn__icon{display:grid;place-items:center;width:2.5rem;height:2.5rem;border-radius:50%;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.btn:hover .btn__icon{transform:translate(2px,-2px)}
+.btn--primary{background:var(--jade);color:var(--ink)}
+.btn--primary .btn__icon{background:var(--ink);color:var(--jade)}
+.btn--primary:hover{background:#7FCFAA}
+.btn--ghost{padding:.85rem 1.5rem;border-color:var(--line-strong);color:var(--text)}
+.btn--ghost:hover{border-color:var(--jade);background:rgba(108,190,154,.08)}
+.btn--sm{font-size:.9rem;padding:.3rem .3rem .3rem 1.1rem}
+.btn--sm .btn__icon{width:2rem;height:2rem}
+.btn--dark{background:var(--mist-ink);color:var(--mist)}
+.btn--dark .btn__icon{background:var(--jade);color:var(--ink)}
+.btn--dark:hover{background:#17352a}
+.textlink{display:inline-flex;align-items:center;gap:.4rem;color:var(--jade);font-weight:600;text-decoration:none;border-bottom:1px solid var(--line-strong);padding:0 0 2px;background:none;border-top:0;border-left:0;border-right:0;font-family:inherit;font-size:1rem;cursor:pointer;transition:border-color .2s}
+.textlink:hover{border-bottom-color:var(--jade)}
+
+/* ---------- header ---------- */
+.site-header{position:fixed;inset:14px 0 auto 0;z-index:50;padding-inline:clamp(.75rem,3vw,2rem);pointer-events:none}
+.nav-pill{pointer-events:auto;max-width:var(--wrap);margin-inline:auto;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.55rem .6rem .55rem 1.1rem;border-radius:999px;background:rgba(9,19,15,.72);backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);border:1px solid var(--line)}
+.logo{display:inline-flex;align-items:center;gap:.7rem;text-decoration:none}
+.mark{width:34px;height:34px;color:var(--jade)}
+.logo>span{display:grid;line-height:1.1}
+.logo__word{font-family:var(--display);font-weight:600;font-size:1.3rem;letter-spacing:-.01em}
+.logo__sub{font-size:.72rem;color:var(--muted);letter-spacing:.02em}
+.nav-links{display:none;gap:.25rem}
+.nav-links a{padding:.55rem 1rem;border-radius:999px;text-decoration:none;font-size:.95rem;color:var(--muted);transition:color .2s,background .2s}
+.nav-links a:hover{color:var(--text);background:rgba(108,190,154,.08)}
+.nav-links a[aria-current=page]{color:var(--ink);background:var(--jade)}
+.nav-cta{display:none}
+.menu-btn{width:2.75rem;height:2.75rem;border-radius:50%;border:1px solid var(--line-strong);background:transparent;cursor:pointer;display:grid;place-content:center;gap:6px;color:var(--text)}
+.menu-btn span{display:block;width:18px;height:1.5px;background:currentColor;transition:transform .3s}
+.menu-btn[aria-expanded=true] span:first-child{transform:translateY(3.75px) rotate(45deg)}
+.menu-btn[aria-expanded=true] span:last-child{transform:translateY(-3.75px) rotate(-45deg)}
+.menu{position:fixed;inset:0;z-index:40;background:var(--ink);padding:7rem 1.5rem 2rem;display:flex;flex-direction:column;justify-content:space-between;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
+body.menu-open .menu{opacity:1;visibility:visible}
+body.menu-open{overflow:hidden}
+.menu nav{display:grid}
+.menu__link{font-family:var(--display);font-size:2.3rem;text-decoration:none;padding:.55rem 0;border-bottom:1px solid var(--line)}
+.menu__foot{display:grid;gap:.4rem;color:var(--muted)}
+.menu__foot a{text-decoration:none;color:var(--text)}
+@media(min-width:900px){.nav-links{display:flex}.nav-cta{display:inline-flex}.menu-btn{display:none}.menu{display:none}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;padding:clamp(7.5rem,13vw,10rem) 0 0;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-20% -10% auto auto;width:70vw;height:70vw;max-width:900px;max-height:900px;background:radial-gradient(closest-side,rgba(46,122,92,.35),transparent);pointer-events:none}
+.crumbs{display:flex;gap:.6rem;font-size:.9rem;color:var(--muted);margin-bottom:1.75rem}
+.crumbs a{text-decoration:none}.crumbs a:hover{color:var(--text)}
+.hero__grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:clamp(2rem,5vw,4.5rem);align-items:center;position:relative}
+.hero h1{font-size:clamp(2.7rem,6vw,5.1rem);font-weight:500;max-width:14ch}
+.lead{font-size:clamp(1.05rem,1.5vw,1.22rem);color:var(--muted);max-width:36rem;margin-top:1.6rem}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-top:2.4rem;max-width:36rem}
+.choice{text-align:left;cursor:pointer;font:inherit;color:var(--text);padding:1.15rem 1.25rem 1.2rem;border-radius:22px;border:1px solid var(--line-strong);background:rgba(108,190,154,.04);display:grid;gap:.4rem;align-content:start;transition:background .3s,color .3s,border-color .3s,transform .2s}
+.choice:hover{border-color:var(--jade);transform:translateY(-2px)}
+.choice strong{font-family:var(--display);font-weight:500;font-size:1.45rem;line-height:1.12;letter-spacing:-.01em}
+.choice span{color:var(--muted);font-size:.92rem;line-height:1.45;transition:color .3s}
+.choice[aria-selected=true]{background:var(--jade);border-color:var(--jade);color:var(--ink)}
+.choice[aria-selected=true] span{color:rgba(9,19,15,.78)}
+.scale-wrap{position:relative;display:grid;place-items:center}
+.scale{width:100%;max-width:560px;height:auto;overflow:visible;--tilt:0deg;--dyL:0px;--dyR:0px}
+.scale .ring{fill:none;stroke:var(--line);stroke-width:1}
+.scale .metal{fill:none;stroke:var(--jade);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.scale .thick{stroke-width:6}
+.scale .thin{stroke-width:1.5;opacity:.55}
+.scale .pivot{fill:var(--ink);stroke:var(--jade);stroke-width:3}
+.scale .knob{fill:var(--ink);stroke:var(--jade);stroke-width:3}
+.scale .pan{fill:rgba(108,190,154,.07);stroke:var(--jade);stroke-width:3;stroke-linejoin:round;transition:fill .6s}
+.scale .goods{fill:rgba(108,190,154,.18);stroke:var(--jade);stroke-width:2.5;stroke-linejoin:round}
+.scale .lbl{font:600 17px var(--sans);fill:var(--muted);text-anchor:middle;transition:fill .6s}
+.scale[data-side=sell] .hang-l .pan,.scale[data-side=buy] .hang-r .pan{fill:rgba(108,190,154,.34)}
+.scale[data-side=sell] .hang-l .lbl,.scale[data-side=buy] .hang-r .lbl{fill:var(--text)}
+.beam{transform-box:view-box;transform-origin:280px 110px;transform:rotate(var(--tilt));transition:transform 1.3s cubic-bezier(.3,1.45,.5,1)}
+.hang-l{transform:translateY(var(--dyL))}
+.hang-r{transform:translateY(var(--dyR))}
+.hang{transition:transform 1.3s cubic-bezier(.3,1.45,.5,1)}
+
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:clamp(3rem,7vw,5.5rem);padding:1.6rem 0;border-top:1px solid var(--line)}
+.fact{display:flex;gap:.8rem;align-items:flex-start;font-size:.95rem;line-height:1.4;color:var(--muted)}
+.fact .ic{width:1.5rem;height:1.5rem;color:var(--jade);margin-top:.05rem}
+.fact b{display:block;color:var(--text);font-weight:600}
+
+/* ---------- sections ---------- */
+.section{padding:clamp(4rem,9vw,8rem) 0}
+.tone-2{background:var(--ink-2);border-block:1px solid var(--line)}
+.light{background:var(--mist);color:var(--mist-ink)}
+.light .muted{color:var(--mist-muted)}
+.h2{font-size:clamp(2rem,4.2vw,3.4rem)}
+.sec-head{max-width:46rem;margin-bottom:clamp(2.2rem,5vw,3.8rem)}
+.sec-head p{margin-top:1.1rem;color:var(--muted);max-width:38rem}
+.light .sec-head p{color:var(--mist-muted)}
+
+/* trade panels */
+.panel{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(2.5rem,6vw,6rem);align-items:start}
+.panel[hidden]{display:none}
+.panel h2{font-size:clamp(2.1rem,4.4vw,3.6rem)}
+.panel__body{color:var(--muted);margin-top:1.3rem;max-width:34rem}
+.group{margin-top:2rem}
+.group h3{font-family:var(--sans);font-size:.95rem;font-weight:600;letter-spacing:0;color:var(--text);margin-bottom:.8rem}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;margin:0;padding:0}
+.chip{padding:.42rem .9rem;border:1px solid var(--line-strong);border-radius:999px;font-size:.9rem;color:var(--text);background:rgba(108,190,154,.05)}
+.panel__actions{display:flex;flex-wrap:wrap;align-items:center;gap:1rem 1.6rem;margin-top:2.4rem}
+.flow{list-style:none;margin:0;padding:0;counter-reset:s}
+.flow li{counter-increment:s;display:grid;grid-template-columns:3.1rem 1fr;gap:1.3rem;padding-bottom:2.1rem;position:relative}
+.flow li::before{content:counter(s);display:grid;place-items:center;width:3.1rem;height:3.1rem;border-radius:50%;border:1px solid var(--line-strong);background:var(--ink-2);font-family:var(--display);font-size:1.4rem;color:var(--jade)}
+.flow li:not(:last-child)::after{content:"";position:absolute;left:1.55rem;top:3.4rem;bottom:.3rem;width:1px;background:var(--line-strong)}
+.flow h3{font-size:1.55rem;margin-top:.2rem}
+.flow p{color:var(--muted);margin-top:.5rem;max-width:32rem}
+.flow a{color:var(--jade)}
+
+/* testing */
+.methods{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.method{background:#F3F8F4;border:1px solid rgba(14,31,23,.12);border-radius:30px;padding:1rem 1rem 2rem}
+.method__art{height:190px;border-radius:20px;background:radial-gradient(120% 120% at 50% 0%,var(--jade-3),var(--forest) 60%,#12301F);display:grid;place-items:center}
+.method__art svg{width:150px;height:auto;fill:none;stroke:#BFE6D2;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.method h3{font-size:2rem;margin:1.6rem 1rem 0}
+.method p{margin:.8rem 1rem 0;color:var(--mist-muted);max-width:30rem}
+.method .tag{margin:1.2rem 1rem 0;display:inline-flex;align-items:center;gap:.5rem;font-weight:600;font-size:.92rem;color:var(--forest)}
+.method .tag .ic{color:var(--jade-3)}
+.promise{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1.2rem 2rem;margin-top:2rem;padding:1.4rem 1.8rem;border-radius:22px;background:var(--mist-ink);color:var(--mist)}
+.promise p{max-width:44rem}
+.promise a{color:var(--jade);font-weight:600}
+
+/* calculator */
+.calc-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(2.5rem,6vw,6rem);align-items:center}
+.calc{background:var(--panel);border:1px solid var(--line-strong);border-radius:32px;padding:clamp(1.4rem,3vw,2.2rem)}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.field{display:grid;gap:.45rem}
+.field--wide{grid-column:1/-1}
+.field label{font-size:.88rem;font-weight:600;color:var(--muted)}
+.field input,.field select{width:100%;font:inherit;font-size:1.05rem;color:var(--text);background:var(--ink);border:1px solid var(--line-strong);border-radius:14px;padding:.85rem 1rem;appearance:none;-webkit-appearance:none;min-height:3.1rem}
+.field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236CBE9A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .9rem center;background-size:1.1rem;padding-right:2.6rem}
+.field input:focus,.field select:focus{outline:2px solid var(--jade);outline-offset:2px;border-color:var(--jade)}
+.price-row{display:grid;grid-template-columns:1fr 6.5rem;gap:.6rem}
+.result{margin-top:1.6rem;padding:1.6rem;border-radius:22px;background:linear-gradient(160deg,var(--forest),#143626);border:1px solid var(--line-strong)}
+.result__label{font-size:.9rem;color:#BFE6D2}
+.result__big{font-family:var(--display);font-size:clamp(2.6rem,6vw,3.8rem);line-height:1.05;margin-top:.2rem;letter-spacing:-.02em}
+.result__sub{display:flex;flex-wrap:wrap;gap:.5rem 2rem;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--line-strong);font-size:.95rem;color:#BFE6D2}
+.result__sub b{display:block;color:var(--text);font-size:1.15rem;font-weight:600}
+.fine{font-size:.85rem;color:var(--muted);margin-top:1rem}
+[hidden]{display:none!important}
+
+/* ledger */
+.ledger{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr);gap:clamp(2rem,6vw,6rem);align-items:start}
+.ledger__head{position:sticky;top:7rem}
+.ledger__head p{margin-top:1.1rem;color:var(--muted);max-width:26rem}
+.rows{display:grid}
+.row{display:grid;grid-template-columns:3.4rem 1fr;gap:1.4rem;padding:2rem 0;border-top:1px solid var(--line-strong);transition:background .3s}
+.row:last-child{border-bottom:1px solid var(--line-strong)}
+.row__icon{width:3.4rem;height:3.4rem;border-radius:16px;display:grid;place-items:center;background:var(--panel-2);color:var(--jade)}
+.row__icon .ic{width:1.5rem;height:1.5rem}
+.row h3{font-size:1.7rem}
+.row p{color:var(--muted);margin-top:.6rem;max-width:36rem}
+.row .chips{margin-top:1rem}
+.row .chip{font-size:.85rem;padding:.3rem .75rem}
+
+/* faq */
+.faq{max-width:52rem}
+.faq details{border-top:1px solid rgba(14,31,23,.18)}
+.faq details:last-child{border-bottom:1px solid rgba(14,31,23,.18)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1.5rem;padding:1.4rem 0;font-family:var(--display);font-size:clamp(1.25rem,2.2vw,1.55rem);letter-spacing:-.01em;line-height:1.25}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";flex:none;width:2.2rem;height:2.2rem;border-radius:50%;border:1px solid rgba(14,31,23,.3);background:linear-gradient(var(--mist-ink),var(--mist-ink)) center/12px 1.5px no-repeat,linear-gradient(var(--mist-ink),var(--mist-ink)) center/1.5px 12px no-repeat;transition:transform .35s cubic-bezier(.2,.8,.2,1),background-color .2s}
+.faq details[open] summary::after{transform:rotate(135deg);background-color:var(--jade)}
+.faq details p{padding:0 3.7rem 1.6rem 0;color:var(--mist-muted);max-width:42rem}
+.faq summary:focus-visible{outline-color:var(--forest)}
+
+/* cta */
+.cta{position:relative;overflow:hidden;border-radius:40px;padding:clamp(2.2rem,6vw,5rem);background:radial-gradient(90% 140% at 100% 0%,var(--jade-3),transparent 60%),linear-gradient(150deg,var(--forest),#0F2C20);border:1px solid var(--line-strong)}
+.cta h2{font-size:clamp(2.2rem,5vw,4.2rem);max-width:15ch}
+.cta p{color:#CFE8DB;max-width:34rem;margin-top:1.2rem}
+.cta .actions{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2.2rem}
+.cta__info{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:1rem 3rem;margin-top:2.6rem;padding-top:1.8rem;border-top:1px solid var(--line-strong);font-size:.95rem;color:#CFE8DB}
+.cta__info div{display:flex;gap:.7rem;align-items:flex-start}
+.cta__info .ic{margin-top:.2rem;color:var(--jade)}
+.cta__info a{text-decoration:none}
+
+/* footer */
+.site-footer{padding:clamp(3.5rem,7vw,6rem) 0 2rem;border-top:1px solid var(--line);margin-top:clamp(4rem,9vw,8rem)}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.3fr;gap:2.5rem}
+.footer-desc{color:var(--muted);margin-top:1rem;max-width:22rem;font-size:.97rem}
+.footer-col{display:grid;gap:.6rem;align-content:start;font-size:.97rem}
+.footer-col h2{font-family:var(--sans);font-size:.92rem;font-weight:600;letter-spacing:0;color:var(--text);margin-bottom:.4rem}
+.footer-col a{color:var(--muted);text-decoration:none;width:fit-content}
+.footer-col a:hover{color:var(--jade)}
+.footer-col p{color:var(--muted)}
+.footer-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem 2rem;margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--line);font-size:.88rem;color:var(--muted)}
+.float-wa{position:fixed;right:max(1rem,env(safe-area-inset-right));bottom:max(1rem,env(safe-area-inset-bottom));z-index:45;width:3.4rem;height:3.4rem;border-radius:50%;display:grid;place-items:center;background:var(--jade);color:var(--ink);box-shadow:0 10px 30px rgba(0,0,0,.45);transition:transform .25s}
+.float-wa:hover{transform:scale(1.07)}
+.float-wa .ic{width:1.7rem;height:1.7rem}
+
+/* ---------- responsive ---------- */
+@media(max-width:980px){
+  .hero__grid,.panel,.calc-grid,.ledger{grid-template-columns:1fr}
+  .hero h1{max-width:16ch}
+  .scale-wrap{order:-1;max-width:420px;margin-inline:auto}
+  .facts{grid-template-columns:1fr 1fr}
+  .ledger__head{position:static}
+  .methods{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .cta__info{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .choices{grid-template-columns:1fr}
+  .fields{grid-template-columns:1fr}
+  .facts{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .row{grid-template-columns:1fr;gap:1rem}
+  .faq details p{padding-right:0}
+  .promise{padding:1.3rem}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}
+}
+</style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -30,8 +283,18 @@
 <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></symbol>
 <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
 <symbol id="i-wa" viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.3.2-.6.2-1.2.2-1.3-.1-.2-.3-.2-.6-.4z"/><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-2.8.9.9-2.7-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></symbol>
+<symbol id="i-vault" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="12" cy="12" r="3.5"/><path d="M12 8.5v-1M12 16.5v1M8.5 12h-1M16.5 12h1"/></symbol>
+<symbol id="i-link" viewBox="0 0 24 24"><circle cx="9" cy="12" r="5"/><circle cx="15" cy="12" r="5"/></symbol>
+<symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/></symbol>
+<symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V4M4 20h16"/><path d="m7 15 4-4 3 3 5-6"/></symbol>
+<symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 4v16M7 20h10M5 7h14"/><path d="M5 7l-2.5 6h5zM19 7l-2.5 6h5z"/></symbol>
+<symbol id="i-flask" viewBox="0 0 24 24"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/><path d="M8 15h8"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
 </svg>
+
 <a class="skip" href="#main">Skip to content</a>
+
 <header class="site-header">
   <div class="nav-pill">
     <a class="logo" href="index.html" aria-label="KampGold UG Ltd, home">
@@ -44,56 +307,313 @@
   </div>
 </header>
 <div class="menu" id="menu">
-  <nav aria-label="Mobile"><a class="menu__link" style="--i:0" href="index.html">Home</a><a class="menu__link" style="--i:1" href="about.html">About</a><a class="menu__link" style="--i:2" href="services.html">Services</a><a class="menu__link" style="--i:3" href="compliance.html">Compliance</a><a class="menu__link" style="--i:4" href="contact.html">Contact</a></nav>
+  <nav aria-label="Mobile"><a class="menu__link" href="index.html">Home</a><a class="menu__link" href="about.html">About</a><a class="menu__link" href="services.html">Services</a><a class="menu__link" href="compliance.html">Compliance</a><a class="menu__link" href="contact.html">Contact</a></nav>
   <div class="menu__foot">
     <a href="tel:+256791741509">+256 791 741509</a>
     <a href="mailto:info@kampgold.com">info@kampgold.com</a>
     <span>Monday to Saturday, 8&nbsp;AM to 7&nbsp;PM</span>
   </div>
 </div>
+
 <main id="main">
-<section class="page-hero">
+
+<!-- ================= HERO ================= -->
+<section class="hero">
   <div class="wrap">
     <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-hidden="true">/</span><span aria-current="page">Services</span></nav>
-    <h1 class="title">Trading services built around proof, not paperwork.</h1>
-    <p class="lead">Whether you’re a miner with raw gold, a broker moving volume, or an individual with jewellery to sell, each service below runs through the same tested, transparent process.</p>
-  </div>
-</section>
+    <div class="hero__grid">
+      <div>
+        <h1>Gold you can verify, whether you’re selling or buying.</h1>
+        <p class="lead">KampGold buys raw gold and jewellery from sellers, and sells tested gold bars, nuggets and gold dust to buyers, jewellers and investors. Every deal starts with a calibrated weigh-in and a purity test you can watch.</p>
+        <div class="choices" role="tablist" aria-label="Choose what you want to do">
+          <button class="choice" role="tab" id="tab-sell" data-side="sell" aria-selected="true" aria-controls="panel-sell" type="button">
+            <strong>I’m selling gold</strong>
+            <span>We buy raw gold, nuggets, dust, scrap and jewellery.</span>
+          </button>
+          <button class="choice" role="tab" id="tab-buy" data-side="buy" aria-selected="false" aria-controls="panel-buy" tabindex="-1" type="button">
+            <strong>I’m buying gold</strong>
+            <span>We sell tested bars, nuggets and gold dust.</span>
+          </button>
+        </div>
+      </div>
 
-<section class="section--tight">
-  <div class="wrap">
-<div class="svc" data-reveal><h2 class="h2">Gold buying</h2><div><p>We purchase raw gold, nuggets, panned and alluvial gold, and gold dust from walk-in sellers and scheduled deliveries. Every purchase starts with a weigh-in on a calibrated scale, followed by a purity test. Nothing is priced from a visual estimate.</p><ul><li>Walk-in purchases at our Kampala office, no appointment required for individual sellers</li><li>Scheduled collection available for miners and brokers with regular volume</li><li>Weight and purity confirmed in front of the seller before a price is named</li></ul></div></div>
-<div class="svc" data-reveal><h2 class="h2">Purity testing and assaying</h2><div><p>We test using fire assay and XRF (X-ray fluorescence) analysis, the two standard methods used across the gold trade for confirming karat and purity. Fire assay is used for a definitive read on raw material; XRF gives a fast, non-destructive check that’s well suited to jewellery and finished pieces.</p><ul><li>Testing is carried out in front of the client, not behind closed doors</li><li>Results are explained in plain terms before pricing is discussed</li><li>Applies to raw gold, scrap, and jewellery alike</li></ul></div></div>
-<div class="svc" data-reveal><h2 class="h2">Secure storage</h2><div><p>For clients awaiting a sale, export clearance, or collection, we offer short-term monitored storage rather than requiring immediate pickup or sale on the same day.</p><ul><li>Suited to consignments in transit or awaiting documentation</li><li>Arranged case-by-case. Get in touch to discuss volume and duration</li></ul></div></div>
-<div class="svc" data-reveal><h2 class="h2">Broker and mining partnerships</h2><div><p>For brokers and small-scale miners with regular production, we set up standing purchase arrangements: an agreed process for testing, pricing, and settlement so each delivery doesn’t need to be renegotiated from scratch.</p><ul><li>Consistent testing and pricing terms across repeat transactions</li><li>Reach extends to Mubende, Kassanda, Busia, Karamoja, Mbarara, and Jinja by arrangement</li></ul></div></div>
-<div class="svc" data-reveal><h2 class="h2">Export documentation support</h2><div><p>Clients moving gold through Uganda’s licensed export channels can get guidance and paperwork support from us. We don’t replace the licensed export process, but we help make sure sellers understand what documentation is needed and where it comes from.</p></div></div>
-<div class="svc" data-reveal><h2 class="h2">Market advisory</h2><div><p>Before you sell anywhere, to us or elsewhere, we’ll give you a straight read on where gold prices currently sit and what your specific material is likely worth once tested. No pressure to sell on the spot.</p></div></div>
-  </div>
-</section>
+      <div class="scale-wrap">
+        <svg id="scale" class="scale" data-side="sell" viewBox="0 0 560 540" role="img" aria-label="A balance scale that tilts toward the side you choose: sell to us, or buy from us.">
+          <defs>
+            <radialGradient id="glow" cx="50%" cy="40%" r="55%"><stop offset="0" stop-color="#2E7A5C" stop-opacity=".5"/><stop offset="1" stop-color="#09130F" stop-opacity="0"/></radialGradient>
+          </defs>
+          <rect x="-40" y="-20" width="640" height="580" fill="url(#glow)"/>
+          <circle class="ring" cx="280" cy="230" r="250"/>
+          <circle class="ring" cx="280" cy="230" r="190"/>
+          <!-- stand -->
+          <path class="metal thick" d="M280 124V470"/>
+          <path class="metal" d="M190 500h180"/>
+          <path class="metal" d="M214 500c6-24 22-32 66-32s60 8 66 32"/>
+          <path class="metal thin" d="M280 150v300"/>
+          <!-- beam -->
+          <g class="beam">
+            <path class="metal thick" d="M96 110H464"/>
+            <path class="metal thin" d="M96 124H464"/>
+            <circle class="knob" cx="96" cy="110" r="9"/>
+            <circle class="knob" cx="464" cy="110" r="9"/>
+          </g>
+          <circle class="pivot" cx="280" cy="110" r="15"/>
+          <circle class="metal" cx="280" cy="86" r="7" style="fill:var(--ink)"/>
+          <!-- left pan: customer sells to KampGold -->
+          <g class="hang hang-l">
+            <path class="metal thin" d="M96 119L26 270M96 119L166 270"/>
+            <path class="goods" d="M58 268l8-18 16-6 14 8 10 16z"/>
+            <path class="goods" d="M98 268l6-12 14-4 12 10 4 6z"/>
+            <path class="goods" d="M76 248l10-14 14 2 4 12z"/>
+            <path class="pan" d="M20 270H172C166 312 140 332 96 332S26 312 20 270z"/>
+            <text class="lbl" x="96" y="368">Sell to us</text>
+          </g>
+          <!-- right pan: customer buys from KampGold -->
+          <g class="hang hang-r">
+            <path class="metal thin" d="M464 119L394 270M464 119L534 270"/>
+            <path class="goods" d="M420 268l10-24h68l10 24z"/>
+            <path class="goods" d="M434 244l8-20h44l8 20z"/>
+            <path class="pan" d="M388 270H540C534 312 508 332 464 332S394 312 388 270z"/>
+            <text class="lbl" x="464" y="368">Buy from us</text>
+          </g>
+        </svg>
+      </div>
+    </div>
 
-<section class="section rule">
-  <div class="wrap">
-    <div class="head" data-reveal><h2 class="h2">Four steps, same order, every time.</h2></div>
-    <ol class="steps " data-reveal><li><h3>Bring your gold in</h3><p>Walk in with raw gold, jewellery, or a consignment, or arrange a scheduled collection for larger volumes.</p></li><li><h3>We weigh and test it</h3><p>Independent weigh-in and purity testing (fire assay or XRF), witnessed by you before any number is discussed.</p></li><li><h3>You get a transparent offer</h3><p>A price based on tested purity and the day’s market rate. No guesswork, no pressure to accept on the spot.</p></li><li><h3>You get paid promptly</h3><p>Cash or bank transfer, typically settled the same day terms are agreed.</p></li></ol>
-  </div>
-</section>
-
-<section class="section--tight">
-  <div class="wrap">
-    <div class="cta" data-reveal>
-      <h2 class="h2">Have a question about a specific service?</h2>
-      <div class="actions"><a class="btn btn--primary" href="contact.html"><span>Contact us</span><span class="btn__icon"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="btn btn--ghost" href="compliance.html"><span>Compliance and testing standards</span></a></div>
+    <div class="facts">
+      <div class="fact"><svg class="ic" aria-hidden="true"><use href="#i-flask"/></svg><span><b>Fire assay and XRF</b>The two standard purity tests</span></div>
+      <div class="fact"><svg class="ic" aria-hidden="true"><use href="#i-eye"/></svg><span><b>Witnessed weigh-ins</b>On a calibrated scale, in front of you</span></div>
+      <div class="fact"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg><span><b>Monday to Saturday</b>8&nbsp;AM to 7&nbsp;PM, walk-ins welcome</span></div>
+      <div class="fact"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg><span><b>Next Minute Street</b>Kampala, Uganda</span></div>
     </div>
   </div>
 </section>
+
+<!-- ================= BUY / SELL PANELS ================= -->
+<section class="section tone-2" id="trade" style="margin-top:clamp(3rem,6vw,5rem)">
+  <div class="wrap">
+
+    <!-- SELL TO US -->
+    <div class="panel" id="panel-sell" role="tabpanel" aria-labelledby="tab-sell" tabindex="0">
+      <div>
+        <h2>Sell your gold to KampGold</h2>
+        <p class="panel__body">We buy raw gold, nuggets, panned and alluvial gold, gold dust, scrap and jewellery. Individual sellers can walk in without an appointment. Miners and brokers with regular volume can set up scheduled collection.</p>
+        <div class="group">
+          <h3>What we buy</h3>
+          <ul class="chips"><li class="chip">Raw gold</li><li class="chip">Nuggets</li><li class="chip">Panned and alluvial gold</li><li class="chip">Gold dust</li><li class="chip">Scrap</li><li class="chip">Jewellery</li></ul>
+        </div>
+        <div class="panel__actions">
+          <a class="btn btn--primary" href="contact.html?topic=sell"><span>Get a quote to sell</span><span class="btn__icon"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
+          <a class="textlink" href="sell-gold-uganda.html">How selling gold in Uganda works</a>
+        </div>
+        <div class="panel__actions" style="margin-top:1.4rem"><button class="textlink" type="button" data-switch="buy">Looking to buy gold instead?</button></div>
+      </div>
+      <ol class="flow">
+        <li><div><h3>Bring your gold in</h3><p>Walk in with raw gold, jewellery or a consignment, or arrange a scheduled collection for larger volumes.</p></div></li>
+        <li><div><h3>We weigh and test it</h3><p>A calibrated weigh-in, then fire assay or XRF, witnessed by you before any number is discussed.</p></div></li>
+        <li><div><h3>You get a transparent offer</h3><p>A price based on tested purity and the day’s market rate. No pressure to accept on the spot.</p></div></li>
+        <li><div><h3>You get paid promptly</h3><p>Cash or bank transfer, typically settled the same day terms are agreed.</p></div></li>
+      </ol>
+    </div>
+
+    <!-- BUY FROM US -->
+    <div class="panel" id="panel-buy" role="tabpanel" aria-labelledby="tab-buy" tabindex="0">
+      <div>
+        <h2>Buy gold from KampGold</h2>
+        <p class="panel__body">We sell tested gold bars, nuggets and gold dust to buyers, jewellers and investors. You see the weight and the purity result in person before you commit, and we can hold your purchase in monitored storage if you’re not ready to take it with you.</p>
+        <div class="group">
+          <h3>What we sell</h3>
+          <ul class="chips"><li class="chip">Gold bars</li><li class="chip">Nuggets</li><li class="chip">Gold dust</li></ul>
+        </div>
+        <div class="group">
+          <h3>Who we sell to</h3>
+          <ul class="chips"><li class="chip">Individual buyers</li><li class="chip">Jewellers</li><li class="chip">Investors</li></ul>
+        </div>
+        <div class="panel__actions">
+          <a class="btn btn--primary" href="contact.html?topic=buy"><span>Request a quote to buy</span><span class="btn__icon"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
+          <a class="textlink" href="gold-prices-uganda.html">Gold prices in Uganda</a>
+        </div>
+        <div class="panel__actions" style="margin-top:1.4rem"><button class="textlink" type="button" data-switch="sell">Looking to sell gold instead?</button></div>
+      </div>
+      <ol class="flow">
+        <li><div><h3>Tell us what you need</h3><p>Which form of gold, roughly how much, and what it’s for. A call, a WhatsApp message or a visit all work.</p></div></li>
+        <li><div><h3>Get a quote at the day’s rate</h3><p>Priced from the current gold market rate. Our <a href="gold-prices-uganda.html">gold price guide</a> explains how Ugandan prices move.</p></div></li>
+        <li><div><h3>Check it yourself</h3><p>Weight and purity are shown to you in person, on the same calibrated scale and with the same testing we use when we buy.</p></div></li>
+        <li><div><h3>Pay and take it home</h3><p>Settle with our team and collect, or leave it with us in short-term monitored storage. Larger orders are arranged case by case.</p></div></li>
+      </ol>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= TESTING ================= -->
+<section class="section light">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="h2">Two tests, and you watch both.</h2>
+      <p>We use the two standard methods in the gold trade for confirming purity. The same testing applies to gold we buy from you and gold we sell to you.</p>
+    </div>
+    <div class="methods">
+      <article class="method">
+        <div class="method__art" aria-hidden="true">
+          <svg viewBox="0 0 160 120"><path d="M46 56h68l-9 40a8 8 0 0 1-8 6H63a8 8 0 0 1-8-6z"/><path d="M80 10c12 14 17 22 9 33-4 6-12 6-16 0-6-9-3-18 7-33z"/><path d="M36 112h88"/><path d="M62 70h36"/></svg>
+        </div>
+        <h3>Fire assay</h3>
+        <p>A definitive read on raw material. We use it when the exact purity of raw gold, nuggets or dust decides the price.</p>
+        <span class="tag"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Best for raw gold</span>
+      </article>
+      <article class="method">
+        <div class="method__art" aria-hidden="true">
+          <svg viewBox="0 0 160 120"><rect x="62" y="6" width="36" height="20" rx="6"/><path d="M72 26 54 82M88 26l18 56M80 26v56" /><path d="M40 82h80" /><ellipse cx="80" cy="96" rx="34" ry="12"/></svg>
+        </div>
+        <h3>XRF analysis</h3>
+        <p>X-ray fluorescence gives a fast, non-destructive check that suits jewellery and finished pieces.</p>
+        <span class="tag"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Best for jewellery and finished pieces</span>
+      </article>
+    </div>
+    <div class="promise">
+      <p>Testing happens in front of you, not behind closed doors. Results are explained in plain terms before pricing is discussed.</p>
+      <a href="compliance.html">Compliance and testing standards</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CALCULATOR ================= -->
+<section class="section">
+  <div class="wrap calc-grid">
+    <div>
+      <h2 class="h2">Work out the pure gold in any piece.</h2>
+      <p class="panel__body">Enter the weight and purity to see how much fine gold it holds. Add the price per gram if you have one, and you get an indicative value. Final pricing always follows our own weigh-in and purity test.</p>
+      <div class="panel__actions"><a class="btn btn--ghost" href="contact.html">Bring it in for a tested price</a></div>
+    </div>
+    <div class="calc">
+      <div class="fields">
+        <div class="field">
+          <label for="calcW">Weight (grams)</label>
+          <input id="calcW" type="number" inputmode="decimal" min="0" step="any" value="10">
+        </div>
+        <div class="field">
+          <label for="calcK">Purity</label>
+          <select id="calcK">
+            <option value="0.999">24 karat (999)</option>
+            <option value="0.9167" selected>22 karat (916)</option>
+            <option value="0.875">21 karat (875)</option>
+            <option value="0.75">18 karat (750)</option>
+            <option value="0.585">14 karat (585)</option>
+            <option value="0.375">9 karat (375)</option>
+            <option value="custom">Custom percentage</option>
+          </select>
+        </div>
+        <div class="field field--wide" id="customWrap" hidden>
+          <label for="calcC">Purity (%) from your test result</label>
+          <input id="calcC" type="number" inputmode="decimal" min="0" max="100" step="any" placeholder="e.g. 87.5">
+        </div>
+        <div class="field field--wide">
+          <label for="calcP">Price per gram (optional)</label>
+          <div class="price-row">
+            <input id="calcP" type="number" inputmode="decimal" min="0" step="any" placeholder="Today’s price per gram of pure gold">
+            <select id="calcCur" aria-label="Currency"><option value="UGX">UGX</option><option value="USD">USD</option></select>
+          </div>
+        </div>
+      </div>
+      <div class="result" aria-live="polite">
+        <div class="result__label">Pure gold content</div>
+        <div class="result__big" id="outG">9.17 g</div>
+        <div class="result__sub">
+          <div><span>Troy ounces</span><b id="outOz">0.295 oz</b></div>
+          <div id="valWrap" hidden><span>Indicative value</span><b id="outV">—</b></div>
+        </div>
+      </div>
+      <p class="fine">Indicative only. Value is pure gold weight multiplied by the price you enter; it is not a quote.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= AROUND THE TRADE ================= -->
+<section class="section tone-2">
+  <div class="wrap ledger">
+    <div class="ledger__head">
+      <h2 class="h2">Support around every deal.</h2>
+      <p>Storage, standing arrangements, paperwork and price guidance for people who buy or sell gold regularly, or are doing it for the first time.</p>
+    </div>
+    <div class="rows">
+      <article class="row">
+        <div class="row__icon"><svg class="ic" aria-hidden="true"><use href="#i-vault"/></svg></div>
+        <div>
+          <h3>Secure storage</h3>
+          <p>Short-term monitored storage for consignments awaiting a sale, export clearance or collection, so nothing has to be sold or picked up the same day. Arranged case by case. Get in touch to discuss volume and duration.</p>
+        </div>
+      </article>
+      <article class="row">
+        <div class="row__icon"><svg class="ic" aria-hidden="true"><use href="#i-link"/></svg></div>
+        <div>
+          <h3>Broker and mining partnerships</h3>
+          <p>Standing arrangements for brokers and small-scale miners with regular production: an agreed process for testing, pricing and settlement, so each delivery isn’t renegotiated from scratch.</p>
+          <ul class="chips"><li class="chip">Mubende</li><li class="chip">Kassanda</li><li class="chip">Busia</li><li class="chip">Karamoja</li><li class="chip">Mbarara</li><li class="chip">Jinja</li><li class="chip">By arrangement</li></ul>
+        </div>
+      </article>
+      <article class="row">
+        <div class="row__icon"><svg class="ic" aria-hidden="true"><use href="#i-doc"/></svg></div>
+        <div>
+          <h3>Export documentation support</h3>
+          <p>Guidance and paperwork support for clients moving gold through Uganda’s licensed export channels. We don’t replace the licensed export process, but we help you understand what documentation is needed and where it comes from.</p>
+        </div>
+      </article>
+      <article class="row">
+        <div class="row__icon"><svg class="ic" aria-hidden="true"><use href="#i-chart"/></svg></div>
+        <div>
+          <h3>Market advisory</h3>
+          <p>Before you sell or buy anywhere, including with us, we give you a straight read on where gold prices sit and what your material is likely worth once tested. No pressure to deal with us on the spot.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="section light">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="h2">Questions people ask first.</h2></div>
+    <div class="faq">
+      <details><summary>Do I need an appointment to sell gold?</summary><p>Individual sellers can walk in to our Kampala office without one. Miners and brokers with regular volume can arrange scheduled collection.</p></details>
+      <details><summary>How is the price decided?</summary><p>From the tested purity, the weight and the day’s market rate. We weigh and test in front of you before any price is named.</p></details>
+      <details><summary>How and when do I get paid?</summary><p>By cash or bank transfer, typically settled the same day terms are agreed.</p></details>
+      <details><summary>What gold do you sell?</summary><p>Tested gold bars, nuggets and gold dust, to buyers, jewellers and investors. Contact us for current availability and a quote.</p></details>
+      <details><summary>Can you hold gold for me?</summary><p>Yes. We offer short-term monitored storage for clients awaiting a sale, export clearance or collection. It’s arranged case by case, so tell us the volume and how long you need it.</p></details>
+      <details><summary>Do you handle exports?</summary><p>We give guidance and paperwork support, but the export itself goes through Uganda’s licensed export channels. We help you understand what documentation is needed and where it comes from.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="section" style="padding-bottom:0">
+  <div class="wrap">
+    <div class="cta">
+      <h2>Selling or buying, start with a conversation.</h2>
+      <p>Tell us what you have or what you need. We’ll explain the process and the day’s rate before you decide anything.</p>
+      <div class="actions">
+        <a class="btn btn--primary" href="contact.html"><span>Get a quote</span><span class="btn__icon"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
+        <a class="btn btn--ghost" href="https://wa.me/256791741509" target="_blank" rel="noopener noreferrer">Message us on WhatsApp</a>
+      </div>
+      <div class="cta__info">
+        <div><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><a href="tel:+256791741509">+256 791 741509</a></div>
+        <div><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg><span>Next Minute Street, Kampala</span></div>
+        <div><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg><span>Monday to Saturday, 8&nbsp;AM to 7&nbsp;PM</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 </main>
+
 <a class="float-wa" href="https://wa.me/256791741509" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"><svg class="ic ic--fill" aria-hidden="true"><use href="#i-wa"/></svg></a>
+
 <footer class="site-footer">
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a class="logo" href="index.html" aria-label="KampGold UG Ltd, home"><svg class="mark" aria-hidden="true" style="width:36px;height:36px"><use href="#i-mark"/></svg><span class="logo__word">KampGold</span></a>
-        <p class="footer-desc">Tested gold bars, nuggets, and gold dust for buyers, jewellers, and investors across Uganda.</p>
+        <a class="logo" href="index.html" aria-label="KampGold UG Ltd, home"><svg class="mark" aria-hidden="true"><use href="#i-mark"/></svg><span class="logo__word">KampGold</span></a>
+        <p class="footer-desc">Tested gold bars, nuggets, and gold dust for buyers, jewellers, and investors across Uganda. We buy gold too.</p>
       </div>
       <div class="footer-col">
         <h2>Company</h2>
@@ -118,6 +638,86 @@
     <div class="footer-bottom"><span>© 2026 KampGold UG Ltd. All rights reserved.</span><span>Kampala, Uganda</span></div>
   </div>
 </footer>
-<script src="assets/script.js" defer></script>
+
+<script>
+(function(){
+  var $=function(s,c){return (c||document).querySelector(s)};
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* mobile menu */
+  var mb=$('#menuBtn'),menu=$('#menu');
+  function setMenu(o){mb.setAttribute('aria-expanded',o);mb.setAttribute('aria-label',o?'Close menu':'Open menu');document.body.classList.toggle('menu-open',o)}
+  mb.addEventListener('click',function(){setMenu(mb.getAttribute('aria-expanded')!=='true')});
+  menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){setMenu(false)})});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')setMenu(false)});
+
+  /* sell / buy tabs + balance scale */
+  var tabs=Array.prototype.slice.call(document.querySelectorAll('[role=tab]'));
+  var panels={sell:$('#panel-sell'),buy:$('#panel-buy')};
+  var scale=$('#scale');
+  var TILT=6, DY=Math.round(184*Math.sin(TILT*Math.PI/180)*10)/10;
+
+  function tiltScale(side){
+    var sell=side==='sell';
+    scale.style.setProperty('--tilt',(sell?-TILT:TILT)+'deg');
+    scale.style.setProperty('--dyL',(sell?DY:-DY)+'px');
+    scale.style.setProperty('--dyR',(sell?-DY:DY)+'px');
+    scale.setAttribute('data-side',side);
+  }
+  function setSide(side,opts){
+    opts=opts||{};
+    tabs.forEach(function(t){
+      var on=t.getAttribute('data-side')===side;
+      t.setAttribute('aria-selected',on?'true':'false');
+      t.tabIndex=on?0:-1;
+      if(on&&opts.focus)t.focus();
+    });
+    panels.sell.hidden=side!=='sell';
+    panels.buy.hidden=side!=='buy';
+    if(opts.delayScale&&!reduce){setTimeout(function(){tiltScale(side)},550)}else{tiltScale(side)}
+    if(opts.hash!==false&&history.replaceState){history.replaceState(null,'',side==='buy'?'#buy':'#sell')}
+    if(opts.scroll){setTimeout(function(){$('#trade').scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'})},reduce?0:450)}
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){setSide(t.getAttribute('data-side'),{scroll:true})});
+    t.addEventListener('keydown',function(e){
+      var n=null;
+      if(e.key==='ArrowRight'||e.key==='ArrowDown')n=tabs[(i+1)%tabs.length];
+      if(e.key==='ArrowLeft'||e.key==='ArrowUp')n=tabs[(i-1+tabs.length)%tabs.length];
+      if(n){e.preventDefault();setSide(n.getAttribute('data-side'),{focus:true})}
+    });
+  });
+  document.querySelectorAll('[data-switch]').forEach(function(b){
+    b.addEventListener('click',function(){
+      setSide(b.getAttribute('data-switch'));
+      window.scrollTo({top:$('#trade').offsetTop-90,behavior:reduce?'auto':'smooth'});
+    });
+  });
+  var start=/buy/.test(location.hash)?'buy':'sell';
+  setSide(start,{delayScale:true,hash:false});
+
+  /* pure gold calculator */
+  var w=$('#calcW'),k=$('#calcK'),c=$('#calcC'),p=$('#calcP'),cur=$('#calcCur');
+  var cw=$('#customWrap'),og=$('#outG'),oz=$('#outOz'),ov=$('#outV'),vw=$('#valWrap');
+  function calc(){
+    cw.hidden=k.value!=='custom';
+    var wt=parseFloat(w.value);
+    var pur=k.value==='custom'?(parseFloat(c.value)||0)/100:parseFloat(k.value);
+    pur=Math.max(0,Math.min(1,pur));
+    if(!(wt>0)||!(pur>0)){og.textContent='—';oz.textContent='—';vw.hidden=true;return}
+    var pure=wt*pur;
+    og.textContent=pure.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})+' g';
+    oz.textContent=(pure/31.1035).toLocaleString('en-US',{minimumFractionDigits:3,maximumFractionDigits:3})+' oz';
+    var price=parseFloat(p.value);
+    if(price>0){
+      var v=pure*price,usd=cur.value==='USD';
+      ov.textContent=cur.value+' '+v.toLocaleString('en-US',{minimumFractionDigits:usd?2:0,maximumFractionDigits:usd?2:0});
+      vw.hidden=false;
+    }else{vw.hidden=true}
+  }
+  [w,k,c,p,cur].forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc)});
+  calc();
+})();
+</script>
 </body>
 </html>
