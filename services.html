@@ -320,13 +320,13 @@ body.menu-open{overflow:hidden}
       <svg class="mark" aria-hidden="true"><use href="#i-mark"/></svg>
       <span><span class="logo__word">KampGold</span><span class="logo__sub">UG Ltd, Kampala</span></span>
     </a>
-    <nav class="nav-links" aria-label="Main"><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html" aria-current="page">Services</a><a href="compliance.html">Compliance</a><a href="contact.html">Contact</a></nav>
+    <nav class="nav-links" aria-label="Main"><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html" aria-current="page">Services</a><a href="#book">Book testing</a><a href="compliance.html">Compliance</a><a href="contact.html">Contact</a></nav>
     <a class="btn btn--primary btn--sm nav-cta" href="contact.html"><span>Get a quote</span><span class="btn__icon"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
     <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Open menu"><span></span><span></span></button>
   </div>
 </header>
 <div class="menu" id="menu">
-  <nav aria-label="Mobile"><a class="menu__link" href="index.html">Home</a><a class="menu__link" href="about.html">About</a><a class="menu__link" href="services.html">Services</a><a class="menu__link" href="compliance.html">Compliance</a><a class="menu__link" href="contact.html">Contact</a></nav>
+  <nav aria-label="Mobile"><a class="menu__link" href="index.html">Home</a><a class="menu__link" href="about.html">About</a><a class="menu__link" href="services.html">Services</a><a class="menu__link" href="#book">Book testing</a><a class="menu__link" href="compliance.html">Compliance</a><a class="menu__link" href="contact.html">Contact</a></nav>
   <div class="menu__foot">
     <a href="tel:+256791741509">+256 791 741509</a>
     <a href="mailto:info@kampgold.com">info@kampgold.com</a>
@@ -354,6 +354,7 @@ body.menu-open{overflow:hidden}
             <span>We sell tested bars, nuggets and gold dust.</span>
           </button>
         </div>
+        <p style="margin-top:1.4rem"><a class="btn btn--primary" href="#book"><span>Book a testing appointment</span><span class="btn__icon"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a></p>
       </div>
 
       <div class="scale-wrap">
@@ -408,8 +409,54 @@ body.menu-open{overflow:hidden}
   </div>
 </section>
 
+<!-- ================= BOOK TESTING APPOINTMENT ================= -->
+<section class="section" id="book" style="margin-top:clamp(3rem,6vw,5rem)">
+  <div class="wrap calc-grid">
+    <div>
+      <h2 class="h2">Book a testing appointment.</h2>
+      <p class="panel__body">Reserve a fire assay or XRF slot for your gold. The testing fee is $100 per kg, and anything under 1&nbsp;kg is a flat $100. Pay online with mobile money or card, or send USDT.</p>
+      <ul class="chips" style="margin-top:1.6rem"><li class="chip">Mobile money</li><li class="chip">Card</li><li class="chip">USDT (TRC20)</li></ul>
+    </div>
+    <div class="calc">
+      <form id="bookForm" novalidate>
+        <div class="fields">
+          <div class="field"><label for="bName">Full name</label><input id="bName" autocomplete="name" required></div>
+          <div class="field"><label for="bPhone">Phone / WhatsApp</label><input id="bPhone" type="tel" autocomplete="tel" placeholder="+256…" required></div>
+          <div class="field"><label for="bEmail">Email (optional)</label><input id="bEmail" type="email" autocomplete="email"></div>
+          <div class="field"><label for="bDate">Preferred date</label><input id="bDate" type="date"></div>
+          <div class="field field--wide"><label for="bKg">Gold to be tested (kg)</label><input id="bKg" type="number" inputmode="decimal" min="0.01" step="any" value="1"></div>
+          <div class="field field--wide"><label>Payment method</label>
+            <div class="pay">
+              <label><input type="radio" name="bPay" value="pesapal" checked><strong>Mobile money or card</strong><span>Secure checkout by Pesapal</span></label>
+              <label><input type="radio" name="bPay" value="usdt_trc20"><strong>USDT (TRC20)</strong><span>Send from your crypto wallet</span></label>
+            </div>
+          </div>
+        </div>
+        <div class="result" aria-live="polite">
+          <div class="result__label">Testing fee</div>
+          <div class="result__big" id="bFee">$100</div>
+          <div class="result__sub"><div><span>Rate</span><b>$100 per kg, minimum $100</b></div></div>
+        </div>
+        <button class="btn btn--primary book-btn" id="bGo" type="submit"><span id="bGoTxt">Book and pay</span><span class="btn__icon"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></button>
+        <p class="msg" id="bMsg" role="alert"></p>
+      </form>
+      <div class="usdt" id="usdtBox" hidden>
+        <h3>Pay with USDT (TRC20)</h3>
+        <p class="fine" style="margin-top:.4rem">Booking reference <b id="uRef"></b></p>
+        <ol>
+          <li>Send exactly <b id="uAmt"></b> USDT to the address below.</li>
+          <li>Use the <b>TRON (TRC20)</b> network only. Funds sent on any other network are lost.</li>
+          <li>Send us the transaction hash with your booking reference on WhatsApp. We confirm your slot once the payment shows on the blockchain.</li>
+        </ol>
+        <div class="addr"><code id="uAddr"></code><button type="button" id="uCopy">Copy</button></div>
+        <p style="margin-top:1.2rem"><a class="btn btn--ghost" id="uWa" href="#" target="_blank" rel="noopener noreferrer">Send transaction hash on WhatsApp</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= BUY / SELL PANELS ================= -->
-<section class="section tone-2" id="trade" style="margin-top:clamp(3rem,6vw,5rem)">
+<section class="section tone-2" id="trade">
   <div class="wrap">
 
     <!-- SELL TO US -->
@@ -494,52 +541,6 @@ body.menu-open{overflow:hidden}
       <p>Testing happens in front of you, not behind closed doors. Results are explained in plain terms before pricing is discussed.</p>
       <a href="#book">Book a testing appointment</a>
       <a href="compliance.html">Compliance and testing standards</a>
-    </div>
-  </div>
-</section>
-
-<!-- ================= BOOK TESTING APPOINTMENT ================= -->
-<section class="section tone-2" id="book">
-  <div class="wrap calc-grid">
-    <div>
-      <h2 class="h2">Book a testing appointment.</h2>
-      <p class="panel__body">Reserve a fire assay or XRF slot for your gold. The testing fee is $100 per kg, and anything under 1&nbsp;kg is a flat $100. Pay online with mobile money or card, or send USDT.</p>
-      <ul class="chips" style="margin-top:1.6rem"><li class="chip">Mobile money</li><li class="chip">Card</li><li class="chip">USDT (TRC20)</li></ul>
-    </div>
-    <div class="calc">
-      <form id="bookForm" novalidate>
-        <div class="fields">
-          <div class="field"><label for="bName">Full name</label><input id="bName" autocomplete="name" required></div>
-          <div class="field"><label for="bPhone">Phone / WhatsApp</label><input id="bPhone" type="tel" autocomplete="tel" placeholder="+256…" required></div>
-          <div class="field"><label for="bEmail">Email (optional)</label><input id="bEmail" type="email" autocomplete="email"></div>
-          <div class="field"><label for="bDate">Preferred date</label><input id="bDate" type="date"></div>
-          <div class="field field--wide"><label for="bKg">Gold to be tested (kg)</label><input id="bKg" type="number" inputmode="decimal" min="0.01" step="any" value="1"></div>
-          <div class="field field--wide"><label>Payment method</label>
-            <div class="pay">
-              <label><input type="radio" name="bPay" value="pesapal" checked><strong>Mobile money or card</strong><span>Secure checkout by Pesapal</span></label>
-              <label><input type="radio" name="bPay" value="usdt_trc20"><strong>USDT (TRC20)</strong><span>Send from your crypto wallet</span></label>
-            </div>
-          </div>
-        </div>
-        <div class="result" aria-live="polite">
-          <div class="result__label">Testing fee</div>
-          <div class="result__big" id="bFee">$100</div>
-          <div class="result__sub"><div><span>Rate</span><b>$100 per kg, minimum $100</b></div></div>
-        </div>
-        <button class="btn btn--primary book-btn" id="bGo" type="submit"><span id="bGoTxt">Book and pay</span><span class="btn__icon"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></button>
-        <p class="msg" id="bMsg" role="alert"></p>
-      </form>
-      <div class="usdt" id="usdtBox" hidden>
-        <h3>Pay with USDT (TRC20)</h3>
-        <p class="fine" style="margin-top:.4rem">Booking reference <b id="uRef"></b></p>
-        <ol>
-          <li>Send exactly <b id="uAmt"></b> USDT to the address below.</li>
-          <li>Use the <b>TRON (TRC20)</b> network only. Funds sent on any other network are lost.</li>
-          <li>Send us the transaction hash with your booking reference on WhatsApp. We confirm your slot once the payment shows on the blockchain.</li>
-        </ol>
-        <div class="addr"><code id="uAddr"></code><button type="button" id="uCopy">Copy</button></div>
-        <p style="margin-top:1.2rem"><a class="btn btn--ghost" id="uWa" href="#" target="_blank" rel="noopener noreferrer">Send transaction hash on WhatsApp</a></p>
-      </div>
     </div>
   </div>
 </section>
