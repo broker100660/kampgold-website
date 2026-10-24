@@ -427,7 +427,7 @@ input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-
         <div class="fields">
           <div class="field"><label for="bName">Full name</label><input id="bName" autocomplete="name" required></div>
           <div class="field"><label for="bPhone">Phone / WhatsApp</label><input id="bPhone" type="tel" autocomplete="tel" placeholder="+256…" required></div>
-          <div class="field"><label for="bEmail">Email (optional)</label><input id="bEmail" type="email" autocomplete="email"></div>
+          <div class="field"><label for="bEmail">Email (needed for card or mobile money)</label><input id="bEmail" type="email" autocomplete="email"></div>
           <div class="field"><label for="bDate">Preferred date</label><input id="bDate" type="date"></div>
           <div class="field field--wide"><label for="bKg">Gold to be tested</label><div class="price-row"><input id="bKg" type="number" inputmode="decimal" min="0" step="any" value="1" placeholder="e.g. 3"><select id="bUnit" aria-label="Unit"><option value="kg" selected>kg</option><option value="g">grams</option></select></div><p class="fine" id="bHint" style="margin-top:.2rem"></p></div>
           <div class="field field--wide"><label>Payment method</label>
@@ -792,6 +792,8 @@ input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-
     var kg=getKg(),name=$('#bName').value.trim(),phone=$('#bPhone').value.trim();
     var method=bf.querySelector('input[name=bPay]:checked').value;
     if(!name||!phone){bMsg.textContent='Please enter your name and phone number.';return}
+    var em=$('#bEmail').value.trim();
+    if(method==='pesapal'&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){bMsg.textContent='Please enter a valid email address so your payment page is filled in correctly.';return}
     if(!(kg>0)){bMsg.textContent='Please enter the amount of gold.';return}
     bGo.disabled=true;bTxt.textContent='Please wait…';
     fetch(BOOK_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:name,phone:phone,email:$('#bEmail').value.trim(),preferred_date:bd.value||null,kg:kg,method:method})})
