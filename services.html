@@ -199,6 +199,25 @@ body.menu-open{overflow:hidden}
 .fine{font-size:.85rem;color:var(--muted);margin-top:1rem}
 [hidden]{display:none!important}
 
+/* booking */
+.pay{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.pay label{display:grid;gap:.2rem;padding:.9rem 1rem;border:1px solid var(--line-strong);border-radius:16px;cursor:pointer;background:var(--ink);transition:border-color .2s,background .2s}
+.pay label:has(input:checked){border-color:var(--jade);background:rgba(108,190,154,.1)}
+.pay label:has(input:focus-visible){outline:2px solid var(--jade);outline-offset:2px}
+.pay input{position:absolute;opacity:0;pointer-events:none}
+.pay strong{font-size:.98rem}.pay span{font-size:.82rem;color:var(--muted);line-height:1.4}
+.book-btn{width:100%;justify-content:space-between;margin-top:1.2rem;border:0;font-family:inherit}
+.book-btn:disabled{opacity:.6;cursor:wait}
+.msg{margin-top:1rem;font-size:.92rem;color:#F2B8A6;min-height:1.2em}
+.usdt{margin-top:1.4rem;padding:1.4rem;border-radius:22px;border:1px solid var(--jade);background:rgba(108,190,154,.07)}
+.usdt h3{font-size:1.5rem}
+.usdt ol{margin:1rem 0 0;padding-left:1.2rem;color:var(--muted);display:grid;gap:.5rem;font-size:.95rem}
+.usdt b{color:var(--text)}
+.addr{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;margin-top:1rem;padding:.8rem 1rem;border-radius:14px;background:var(--ink);border:1px solid var(--line-strong)}
+.addr code{font:600 .95rem ui-monospace,Menlo,Consolas,monospace;word-break:break-all;flex:1 1 14rem}
+.addr button{font:inherit;font-weight:600;font-size:.88rem;color:var(--ink);background:var(--jade);border:0;border-radius:999px;padding:.5rem 1rem;cursor:pointer}
+@media(max-width:560px){.pay{grid-template-columns:1fr}}
+
 /* ledger */
 .ledger{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr);gap:clamp(2rem,6vw,6rem);align-items:start}
 .ledger__head{position:sticky;top:7rem}
@@ -473,7 +492,54 @@ body.menu-open{overflow:hidden}
     </div>
     <div class="promise">
       <p>Testing happens in front of you, not behind closed doors. Results are explained in plain terms before pricing is discussed.</p>
+      <a href="#book">Book a testing appointment</a>
       <a href="compliance.html">Compliance and testing standards</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BOOK TESTING APPOINTMENT ================= -->
+<section class="section tone-2" id="book">
+  <div class="wrap calc-grid">
+    <div>
+      <h2 class="h2">Book a testing appointment.</h2>
+      <p class="panel__body">Reserve a fire assay or XRF slot for your gold. The testing fee is $100 per kg, and anything under 1&nbsp;kg is a flat $100. Pay online with mobile money or card, or send USDT.</p>
+      <ul class="chips" style="margin-top:1.6rem"><li class="chip">Mobile money</li><li class="chip">Card</li><li class="chip">USDT (TRC20)</li></ul>
+    </div>
+    <div class="calc">
+      <form id="bookForm" novalidate>
+        <div class="fields">
+          <div class="field"><label for="bName">Full name</label><input id="bName" autocomplete="name" required></div>
+          <div class="field"><label for="bPhone">Phone / WhatsApp</label><input id="bPhone" type="tel" autocomplete="tel" placeholder="+256…" required></div>
+          <div class="field"><label for="bEmail">Email (optional)</label><input id="bEmail" type="email" autocomplete="email"></div>
+          <div class="field"><label for="bDate">Preferred date</label><input id="bDate" type="date"></div>
+          <div class="field field--wide"><label for="bKg">Gold to be tested (kg)</label><input id="bKg" type="number" inputmode="decimal" min="0.01" step="any" value="1"></div>
+          <div class="field field--wide"><label>Payment method</label>
+            <div class="pay">
+              <label><input type="radio" name="bPay" value="pesapal" checked><strong>Mobile money or card</strong><span>Secure checkout by Pesapal</span></label>
+              <label><input type="radio" name="bPay" value="usdt_trc20"><strong>USDT (TRC20)</strong><span>Send from your crypto wallet</span></label>
+            </div>
+          </div>
+        </div>
+        <div class="result" aria-live="polite">
+          <div class="result__label">Testing fee</div>
+          <div class="result__big" id="bFee">$100</div>
+          <div class="result__sub"><div><span>Rate</span><b>$100 per kg, minimum $100</b></div></div>
+        </div>
+        <button class="btn btn--primary book-btn" id="bGo" type="submit"><span id="bGoTxt">Book and pay</span><span class="btn__icon"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></button>
+        <p class="msg" id="bMsg" role="alert"></p>
+      </form>
+      <div class="usdt" id="usdtBox" hidden>
+        <h3>Pay with USDT (TRC20)</h3>
+        <p class="fine" style="margin-top:.4rem">Booking reference <b id="uRef"></b></p>
+        <ol>
+          <li>Send exactly <b id="uAmt"></b> USDT to the address below.</li>
+          <li>Use the <b>TRON (TRC20)</b> network only. Funds sent on any other network are lost.</li>
+          <li>Send us the transaction hash with your booking reference on WhatsApp. We confirm your slot once the payment shows on the blockchain.</li>
+        </ol>
+        <div class="addr"><code id="uAddr"></code><button type="button" id="uCopy">Copy</button></div>
+        <p style="margin-top:1.2rem"><a class="btn btn--ghost" id="uWa" href="#" target="_blank" rel="noopener noreferrer">Send transaction hash on WhatsApp</a></p>
+      </div>
     </div>
   </div>
 </section>
@@ -695,6 +761,35 @@ body.menu-open{overflow:hidden}
   });
   var start=/buy/.test(location.hash)?'buy':'sell';
   setSide(start,{delayScale:true,hash:false});
+
+  /* testing appointment booking */
+  var BOOK_API='https://api.openbrokka.com/api/kampgold/orders'; /* confirm this endpoint */
+  var RATE=100, USDT_ADDR='TKhVQX1Nr8AqxNDLH4nyE8exWcwEpLBMYF', WA='256791741509';
+  var bf=$('#bookForm'),bKg=$('#bKg'),bFee=$('#bFee'),bMsg=$('#bMsg'),bGo=$('#bGo'),bTxt=$('#bGoTxt');
+  var bd=$('#bDate'); if(bd){bd.min=new Date().toISOString().slice(0,10)}
+  function fee(kg){return Math.round(Math.max(1,kg)*RATE*100)/100}
+  function money(n){return '$'+n.toLocaleString('en-US',{minimumFractionDigits:n%1?2:0,maximumFractionDigits:2})}
+  function showFee(){var kg=parseFloat(bKg.value);bFee.textContent=kg>0?money(fee(kg)):'—'}
+  bKg.addEventListener('input',showFee);showFee();
+  bf.addEventListener('submit',function(e){
+    e.preventDefault();bMsg.textContent='';
+    var kg=parseFloat(bKg.value),name=$('#bName').value.trim(),phone=$('#bPhone').value.trim();
+    var method=bf.querySelector('input[name=bPay]:checked').value;
+    if(!name||!phone){bMsg.textContent='Please enter your name and phone number.';return}
+    if(!(kg>0)){bMsg.textContent='Please enter the amount of gold in kg.';return}
+    bGo.disabled=true;bTxt.textContent='Please wait…';
+    fetch(BOOK_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:name,phone:phone,email:$('#bEmail').value.trim(),preferred_date:bd.value||null,kg:kg,method:method})})
+    .then(function(r){return r.json().then(function(d){if(!r.ok)throw new Error(d&&d.error||'failed');return d})})
+    .then(function(d){
+      if(method==='pesapal'){if(!d.redirect_url)throw new Error('no link');window.location.href=d.redirect_url;return}
+      $('#uRef').textContent=d.order_ref;$('#uAmt').textContent=Number(d.amount_usd).toFixed(2);$('#uAddr').textContent=USDT_ADDR;
+      $('#uWa').href='https://wa.me/'+WA+'?text='+encodeURIComponent('Hello KampGold, I paid '+Number(d.amount_usd).toFixed(2)+' USDT (TRC20) for testing booking '+d.order_ref+'. Transaction hash: ');
+      var box=$('#usdtBox');box.hidden=false;box.scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'});
+      bGo.disabled=false;bTxt.textContent='Book and pay';
+    })
+    .catch(function(){bMsg.textContent='We couldn’t complete your booking. Please try again or message us on WhatsApp.';bGo.disabled=false;bTxt.textContent='Book and pay'});
+  });
+  $('#uCopy').addEventListener('click',function(){var b=this;(navigator.clipboard?navigator.clipboard.writeText(USDT_ADDR):Promise.reject()).then(function(){b.textContent='Copied'},function(){b.textContent='Select and copy'});setTimeout(function(){b.textContent='Copy'},2000)});
 
   /* pure gold calculator */
   var w=$('#calcW'),k=$('#calcK'),c=$('#calcC'),p=$('#calcP'),cur=$('#calcCur');
