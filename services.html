@@ -414,7 +414,7 @@ body.menu-open{overflow:hidden}
   <div class="wrap calc-grid">
     <div>
       <h2 class="h2">Book a testing appointment.</h2>
-      <p class="panel__body">Reserve a fire assay or XRF slot for your gold. The testing fee is $100 per kg, and anything under 1&nbsp;kg is a flat $100. Pay online with mobile money or card, or send USDT.</p>
+      <p class="panel__body">Reserve a fire assay or XRF slot for your gold. Our testing charges start at $100. The fee is $100 per kg (1,000&nbsp;g), and any amount under 1&nbsp;kg, even a few grams, is a flat $100. Pay online with mobile money or card, or send USDT.</p>
       <ul class="chips" style="margin-top:1.6rem"><li class="chip">Mobile money</li><li class="chip">Card</li><li class="chip">USDT (TRC20)</li></ul>
     </div>
     <div class="calc">
@@ -424,7 +424,7 @@ body.menu-open{overflow:hidden}
           <div class="field"><label for="bPhone">Phone / WhatsApp</label><input id="bPhone" type="tel" autocomplete="tel" placeholder="+256…" required></div>
           <div class="field"><label for="bEmail">Email (optional)</label><input id="bEmail" type="email" autocomplete="email"></div>
           <div class="field"><label for="bDate">Preferred date</label><input id="bDate" type="date"></div>
-          <div class="field field--wide"><label for="bKg">Gold to be tested (kg)</label><input id="bKg" type="number" inputmode="decimal" min="0.01" step="any" value="1"></div>
+          <div class="field field--wide"><label for="bKg">Gold to be tested (grams)</label><input id="bKg" type="number" inputmode="decimal" min="1" step="any" value="100" placeholder="e.g. 250"></div>
           <div class="field field--wide"><label>Payment method</label>
             <div class="pay">
               <label><input type="radio" name="bPay" value="pesapal" checked><strong>Mobile money or card</strong><span>Secure checkout by Pesapal</span></label>
@@ -435,7 +435,7 @@ body.menu-open{overflow:hidden}
         <div class="result" aria-live="polite">
           <div class="result__label">Testing fee</div>
           <div class="result__big" id="bFee">$100</div>
-          <div class="result__sub"><div><span>Rate</span><b>$100 per kg, minimum $100</b></div></div>
+          <div class="result__sub"><div><span>Rate</span><b>Minimum $100, then $100 per 1,000&nbsp;g</b></div></div>
         </div>
         <button class="btn btn--primary book-btn" id="bGo" type="submit"><span id="bGoTxt">Book and pay</span><span class="btn__icon"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></button>
         <p class="msg" id="bMsg" role="alert"></p>
@@ -770,14 +770,14 @@ body.menu-open{overflow:hidden}
   var bd=$('#bDate'); if(bd){bd.min=new Date().toISOString().slice(0,10)}
   function fee(kg){return Math.round(Math.max(1,kg)*RATE*100)/100}
   function money(n){return '$'+n.toLocaleString('en-US',{minimumFractionDigits:n%1?2:0,maximumFractionDigits:2})}
-  function showFee(){var kg=parseFloat(bKg.value);bFee.textContent=kg>0?money(fee(kg)):'—'}
+  function showFee(){var g=parseFloat(bKg.value);bFee.textContent=g>0?money(fee(g/1000)):'—'}
   bKg.addEventListener('input',showFee);showFee();
   bf.addEventListener('submit',function(e){
     e.preventDefault();bMsg.textContent='';
-    var kg=parseFloat(bKg.value),name=$('#bName').value.trim(),phone=$('#bPhone').value.trim();
+    var grams=parseFloat(bKg.value),kg=grams/1000,name=$('#bName').value.trim(),phone=$('#bPhone').value.trim();
     var method=bf.querySelector('input[name=bPay]:checked').value;
     if(!name||!phone){bMsg.textContent='Please enter your name and phone number.';return}
-    if(!(kg>0)){bMsg.textContent='Please enter the amount of gold in kg.';return}
+    if(!(grams>0)){bMsg.textContent='Please enter the amount of gold in grams.';return}
     bGo.disabled=true;bTxt.textContent='Please wait…';
     fetch(BOOK_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:name,phone:phone,email:$('#bEmail').value.trim(),preferred_date:bd.value||null,kg:kg,method:method})})
     .then(function(r){return r.json().then(function(d){if(!r.ok)throw new Error(d&&d.error||'failed');return d})})
