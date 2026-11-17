@@ -160,6 +160,7 @@
   var $=function(s,c){return (c||document).querySelector(s)};
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var USDT_ADDR='TKhVQX1Nr8AqxNDLH4nyE8exWcwEpLBMYF', WA='256791741509';
+ var FALLBACK_EMAIL='makasijohn82@gmail.com';
 
   /* mobile menu */
   var mb=$('#menuBtn'),menu=$('#menu');
@@ -277,12 +278,13 @@
       var method=form.querySelector('input[name=eqPay]:checked').value;
       if(!total.n){msg.textContent='Add at least one item to your order.';return}
       if(!name||!phone){msg.textContent='Please enter your name and phone number.';return}
-      if(method==='pesapal'&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){msg.textContent='Please enter a valid email address so your payment page is filled in correctly.';return}
+      var emailOk=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+var sendEmail=(method==='pesapal'&&!emailOk)?FALLBACK_EMAIL:email;
       if(del==='delivery'&&!addr){msg.textContent='Please enter your delivery address.';return}
       var items=[];PRODUCTS.forEach(function(p){each(p,function(i,s){if(q[s])items.push({sku:s,qty:q[s]})})});
       go.disabled=true;goTxt.textContent='Please wait…';
       /* The server must price the order from its own catalog and ignore these totals. */
-      fetch(EQ_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:name,phone:phone,email:email,delivery:del,address:addr,items:items,method:method,currency:method==='pesapal'?'UGX':'USD',total_ugx:total.ugx,total_usd:total.usd})})
+      fetch(EQ_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:name,phone:phone,email:sendEmail,delivery:del,address:addr,items:items,method:method,currency:method==='pesapal'?'UGX':'USD',total_ugx:total.ugx,total_usd:total.usd})})
       .then(function(r){return r.json().then(function(d){if(!r.ok)throw new Error(d&&d.error||'failed');return d})})
       .then(function(d){
         if(method==='pesapal'){if(!d.redirect_url)throw new Error('no link');window.location.href=d.redirect_url;return}
