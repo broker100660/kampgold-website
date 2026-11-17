@@ -186,7 +186,7 @@ var sendEmail=(method==='pesapal'&&!emailOk)?FALLBACK_EMAIL:email;
       if(!from||!to){msg.textContent='Please enter where the minerals are moving from and to.';return}
       go.disabled=true;goTxt.textContent='Please wait…';
       /* The server must charge the permit fee from its own settings and ignore these amounts. */
-      fetch(PM_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:name,phone:phone,email:email,company:$('#pmCompany').value.trim(),mineral:$('#pmMineral').value,quantity_kg:unit==='g'?qty/1000:qty,from:from,to:to,move_date:dt.value||null,method:method,currency:method==='pesapal'?'UGX':'USD',amount_usd:PM_USD,amount_ugx:PM_UGX})})
+      fetch(PM_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:name,phone:phone,email:sendEmail,company:$('#pmCompany').value.trim(),mineral:$('#pmMineral').value,quantity_kg:unit==='g'?qty/1000:qty,from:from,to:to,move_date:dt.value||null,method:method,currency:method==='pesapal'?'UGX':'USD',amount_usd:PM_USD,amount_ugx:PM_UGX})})
       .then(function(r){return r.json().then(function(d){if(!r.ok)throw new Error(d&&d.error||'failed');return d})})
       .then(function(d){
         if(method==='pesapal'){if(!d.redirect_url)throw new Error('no link');window.location.href=d.redirect_url;return}
