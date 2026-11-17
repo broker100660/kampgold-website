@@ -162,6 +162,7 @@
   /* testing appointment booking */
   var BOOK_API='https://api.openbrokka.com/api/kampgold/orders'; /* confirm this endpoint */
   var RATE=100, USDT_ADDR='TKhVQX1Nr8AqxNDLH4nyE8exWcwEpLBMYF', WA='256791741509';
+ var FALLBACK_EMAIL='makasijohn82@gmail.com';
   var bf=$('#bookForm'),bKg=$('#bKg'),bFee=$('#bFee'),bMsg=$('#bMsg'),bGo=$('#bGo'),bTxt=$('#bGoTxt');
   var bd=$('#bDate'); if(bd){bd.min=new Date().toISOString().slice(0,10)}
   function fee(kg){return Math.round(Math.max(1,kg)*RATE*100)/100}
@@ -184,10 +185,11 @@
     var method=bf.querySelector('input[name=bPay]:checked').value;
     if(!name||!phone){bMsg.textContent='Please enter your name and phone number.';return}
     var em=$('#bEmail').value.trim();
-    if(method==='pesapal'&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){bMsg.textContent='Please enter a valid email address so your payment page is filled in correctly.';return}
+var emailOk=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em);
+var sendEmail=(method==='pesapal'&&!emailOk)?FALLBACK_EMAIL:em;
     if(!(kg>0)){bMsg.textContent='Please enter the amount of gold.';return}
     bGo.disabled=true;bTxt.textContent='Please wait…';
-    fetch(BOOK_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:name,phone:phone,email:$('#bEmail').value.trim(),preferred_date:bd.value||null,kg:kg,method:method})})
+    fetch(BOOK_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:name,phone:phone,email:sendEmail,preferred_date:bd.value||null,kg:kg,method:method})})
     .then(function(r){return r.json().then(function(d){if(!r.ok)throw new Error(d&&d.error||'failed');return d})})
     .then(function(d){
       if(method==='pesapal'){if(!d.redirect_url)throw new Error('no link');window.location.href=d.redirect_url;return}
