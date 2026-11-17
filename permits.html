@@ -156,6 +156,7 @@
   var $=function(s,c){return (c||document).querySelector(s)};
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var USDT_ADDR='TKhVQX1Nr8AqxNDLH4nyE8exWcwEpLBMYF', WA='256791741509';
+  var FALLBACK_EMAIL='makasijohn82@gmail.com';
 
   /* mobile menu */
   var mb=$('#menuBtn'),menu=$('#menu');
@@ -179,7 +180,8 @@
       var qty=parseFloat($('#pmQty').value),unit=$('#pmUnit').value,from=$('#pmFrom').value.trim(),to=$('#pmTo').value.trim();
       var method=f.querySelector('input[name=pmPay]:checked').value;
       if(!name||!phone){msg.textContent='Please enter your name and phone number.';return}
-      if(method==='pesapal'&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){msg.textContent='Please enter a valid email address so your payment page is filled in correctly.';return}
+      var emailOk=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+var sendEmail=(method==='pesapal'&&!emailOk)?FALLBACK_EMAIL:email;
       if(!(qty>0)){msg.textContent='Please enter the quantity you are moving.';return}
       if(!from||!to){msg.textContent='Please enter where the minerals are moving from and to.';return}
       go.disabled=true;goTxt.textContent='Please wait…';
