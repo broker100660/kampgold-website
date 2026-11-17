@@ -160,7 +160,7 @@
   var $=function(s,c){return (c||document).querySelector(s)};
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var USDT_ADDR='TKhVQX1Nr8AqxNDLH4nyE8exWcwEpLBMYF', WA='256791741509';
- var FALLBACK_EMAIL='makasijohn82@gmail.com';
+  var FALLBACK_EMAIL='makasijohn82@gmail.com';
 
   /* mobile menu */
   var mb=$('#menuBtn'),menu=$('#menu');
@@ -171,7 +171,9 @@
 
   /* ================= EQUIPMENT SHOP =================
      CHANGE PRICES HERE. Each item has its own USD and UGX price.
-     Items with colours/karats have a list of options: ['label', usd, ugx].
+     Items with colours/karats/sizes have a list of options: ['label', usd, ugx].
+     IMPORTANT: the server charges from the database table kampgold_equipment_products,
+     so any price changed here must also be changed there (same sku).
      Photos: save a file as assets/equipment/<id>.jpg and it replaces the drawing. */
   (function(){
     var EQ_API='https://api.openbrokka.com/api/kampgold/equipment-orders'; /* confirm this endpoint */
@@ -182,14 +184,14 @@
       {id:'acid-kit',g:'gold',name:'Gold acid test kit',unit:'per kit',art:'kit',usd:28,ugx:123200,d:'Five acid bottles (10K to 24K), a touchstone and testing needles in a case.'},
       {id:'touchstone',g:'gold',name:'Touchstone',unit:'per piece',art:'stone',usd:10,ugx:44000,d:'Black stone for streak testing gold and silver.'},
       {id:'xrf',g:'gold',name:'Handheld XRF analyser',unit:'per piece',art:'xrf',usd:12000,ugx:52800000,d:'Fast, non-destructive analysis in seconds. Gold, silver and other metals.'},
-      
+      {id:'precious-scale',g:'gold',name:'Precious metal weighing scale',unit:'per piece',art:'scale',usd:27.5,ugx:120000,d:'High-precision digital scale for gold, silver and gemstones. Accurate to 0.01 g.'},
       {id:'silver-solution',g:'silver',name:'Silver testing solution',unit:'per bottle',art:'bottle',usd:8,ugx:35200,d:'30 ml solution that shows silver purity on the touchstone.'},
       {id:'metal-tester',g:'silver',name:'Electronic precious metal tester',unit:'per piece',art:'probe',usd:150,ugx:660000,d:'Probe tester for gold, silver and platinum. Battery powered.'},
       {id:'diamond-pen',g:'diamond',name:'Diamond tester pen',unit:'per piece',art:'pen',usd:35,ugx:154000,d:'Pocket thermal tester that separates diamond from most imitations.'},
       {id:'moissanite',g:'diamond',name:'Diamond and moissanite tester',unit:'per piece',art:'gem',usd:85,ugx:374000,d:'Thermal and electrical test, so it also tells moissanite apart from diamond.'},
       {id:'loupe',g:'diamond',name:'Jeweller’s loupe 10x',unit:'per piece',art:'loupe',usd:8,ugx:35200,d:'Folding 10x magnifier for checking stones and hallmarks.'},
-      {id:'precious-scale',g:'gold',name:'Precious metal weighing scale',unit:'per piece',art:'scale',usd:27.5,ugx:120000,d:'High-precision digital scale for gold, silver and gemstones. Accurate to 0.01 g.'},
-      {id:'moissanite-stone',g:'diamond',name:'Moissanite stones',unit:'per stone',art:'gem',usd:60,ugx:264000,d:'Lab-grown moissanite stones with diamond-like brilliance and hardness. Sizes and colours on request.'}
+      {id:'moissanite-stone',g:'diamond',name:'Moissanite stones',unit:'per stone',art:'gem',d:'Lab-grown moissanite stones with diamond-like brilliance and hardness. Choose your size.',
+        v:[['Small',15,66000],['Medium',60,264000],['Large',200,880000]]}
     ];
 
     var ART={
@@ -201,8 +203,7 @@
       pen:'<path d="M20 82l8-22 36-36 14 14-36 36z"/><path d="M64 24l8-8 14 14-8 8M24 70l6 6"/>',
       gem:'<path d="M28 30h44l12 18-34 38L16 48z"/><path d="M16 48h68M38 30l-6 18 18 38 18-38-6-18M32 48l18-18 18 18"/>',
       loupe:'<circle cx="42" cy="42" r="24"/><path d="M60 60l24 24" stroke-width="6"/><path d="M30 36a14 14 0 0 1 10-9"/>',
-      scale:'<path d="M22 56c0-7 12-12 28-12s28 5 28 12z"/><path d="M14 66h72v18a4 4 0 0 1-4 4H18a4 4 0 0 1-4-4z"/><rect x="24" y="72" width="22" height="9" rx="2"/>',
-      gem:'<path d="M28 30h44l12 18-34 38L16 48z"/><path d="M16 48h68M38 30l-6 18 18 38 18-38-6-18M32 48l18-18 18 18"/>'
+      scale:'<path d="M22 56c0-7 12-12 28-12s28 5 28 12z"/><path d="M14 66h72v18a4 4 0 0 1-4 4H18a4 4 0 0 1-4-4z"/><rect x="24" y="72" width="22" height="9" rx="2"/>'
     };
 
     var q={}, total={ugx:0,usd:0,n:0};
@@ -215,7 +216,7 @@
 
     function card(p,pi){
       var h='<article class="eq" data-p="'+pi+'"><div class="eq__art"><svg viewBox="0 0 100 100" aria-hidden="true">'+ART[p.art]+'</svg></div><h4>'+p.name+'</h4><p>'+p.d+'</p>';
-      if(p.v){h+='<div class="field"><select aria-label="Karat for '+p.name+'">'+p.v.map(function(v,i){return '<option value="'+i+'">'+v[0]+'</option>'}).join('')+'</select></div>'}
+      if(p.v){h+='<div class="field"><select aria-label="Option for '+p.name+'">'+p.v.map(function(v,i){return '<option value="'+i+'">'+v[0]+'</option>'}).join('')+'</select></div>'}
       h+='<div class="eq__price"><b class="eq__ugx"></b><span class="eq__usd"></span></div>'+
         '<div class="qty"><button type="button" data-step="-1" aria-label="One less">−</button>'+
         '<input type="number" inputmode="numeric" min="0" max="999" value="0" aria-label="Quantity of '+p.name+'">'+
@@ -283,8 +284,9 @@
       var method=form.querySelector('input[name=eqPay]:checked').value;
       if(!total.n){msg.textContent='Add at least one item to your order.';return}
       if(!name||!phone){msg.textContent='Please enter your name and phone number.';return}
+      /* email never blocks an order: if it is empty or invalid for Pesapal, the fallback is sent */
       var emailOk=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-var sendEmail=(method==='pesapal'&&!emailOk)?FALLBACK_EMAIL:email;
+      var sendEmail=(method==='pesapal'&&!emailOk)?FALLBACK_EMAIL:email;
       if(del==='delivery'&&!addr){msg.textContent='Please enter your delivery address.';return}
       var items=[];PRODUCTS.forEach(function(p){each(p,function(i,s){if(q[s])items.push({sku:s,qty:q[s]})})});
       go.disabled=true;goTxt.textContent='Please wait…';
